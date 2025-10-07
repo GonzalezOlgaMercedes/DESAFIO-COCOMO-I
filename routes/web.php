@@ -9,7 +9,24 @@ Route::get('/',
     $KLOC_tamanio_del_software = 40; //expresado en miles de líneas de código
     $EAF_factor_de_ajuste = 1;//si no se aplica ningún factor de ajuste EAF = 1
     
-
+    $factores_a_tener_en_cuenta = [
+        [
+            "nombre"=>"Confiabilidad requerida del software",
+            "influencia"=>"Muy Bajo",
+            "factor"=>0.75
+        ],
+        [
+            "nombre"=>"Tamaño de la base de datos",
+            "influencia"=>"Muy Alto",
+            "factor"=>1.16
+        ],
+        [
+            "nombre"=>"Capacidad de los programadores",
+            "influencia"=>"Muy Bajo",
+            "factor"=>1.46
+        ],
+    ];
+    
     //Determinar cuánto valen los coeficientes a, b, c y d para el modo orgánico en el nivel Básico
     if($nivel_de_desarrollo == "Básico"){
 
@@ -33,10 +50,19 @@ Route::get('/',
             $d = 0.38;
         }
 
-        //Calcular el EAF aplicando los 15 factores de ajuste que aparecen en el nivel Intermedio
-        //Ecuación para calcular el EAF es el producto de EM_i para i = 1 hasta 15
-        //EAF = EM_1 × EM_2 × EM_3 × ... × EM_15
-
+        if(count($factores_a_tener_en_cuenta)>0){
+            echo "<span style='font-weight:bold;'>Los factores de ajuste aplicados son: </span><br>";
+            foreach ($factores_a_tener_en_cuenta as $factor) {
+                //Calcular el EAF aplicando los 15 factores de ajuste que aparecen en el nivel Intermedio
+                //Ecuación para calcular el EAF es el producto de EM_i para i = 1 hasta 15
+                //EAF = EM_1 × EM_2 × EM_3 × ... × EM_15
+                $EAF_factor_de_ajuste = $factor['factor'] * $EAF_factor_de_ajuste;
+                
+                //Aclarar qué factores de ajuste se están aplicando
+                echo "<br>{$factor['nombre']}: {$factor['influencia']} ({$factor['factor']})<br>";
+            }
+            echo "<br><span style='font-weight:bold;'>EAF aplicado: {$EAF_factor_de_ajuste}.</span><br>";
+        }
     }
 
     //¿Cuál es el esfuerzo (PM)? expresado en persona-meses
