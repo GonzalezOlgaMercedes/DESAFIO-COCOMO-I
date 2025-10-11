@@ -22,6 +22,17 @@
         <label for="sueldo_por_persona">Ingrese el sueldo estimado por persona:</label>
         <input type="number" name="sueldo_por_persona" required>
     </div>
+
+    <!-- Seleccionar el nivel de desarrollo -->
+    <div>
+        <label for="nivel_de_desarrollo">Seleccione el nivel de desarrollo:</label>
+        <select name="nivel_de_desarrollo" id="nivel_de_desarrollo">
+            <option value="Básico">Básico</option>
+            <option value="Intermedio">Intermedio</option>
+            <option value="Detallado">Detallado</option>
+        </select>
+    </div>
+    
     <button type="submit">ENVIAR</button>
 </form>
 
