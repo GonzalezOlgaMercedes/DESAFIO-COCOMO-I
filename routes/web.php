@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('/modo-de-desarrollo', [COCOMOController::class, 'seleccionarModoDesarrollo'])->name('modo-de-desarrollo');
+Route::post('/modo-de-desarrollo', [COCOMOController::class, 'testearFormulario'])->name('modo-de-desarrollo');
 //Ruta para acceder al formulario de selección del modo de desarrollo
 Route::get('/modo-de-desarrollo', function () {
     return view('modo_de_desarrollo');

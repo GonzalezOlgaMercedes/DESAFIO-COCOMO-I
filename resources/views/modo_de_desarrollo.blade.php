@@ -1,15 +1,26 @@
 <form method="POST" action="{{ route('modo-de-desarrollo') }}">
     @csrf
-    <label for="modo_de_desarrollo">Seleccione el modo de desarrollo:</label>
-    <select name="modo_de_desarrollo" id="modo_de_desarrollo">
-        <option value="Orgánico">Orgánico</option>
-        <option value="Semiorgánico">Semiorgánico</option>
-        <option value="Empotrado">Empotrado</option>
-    </select>
+    <div>
+        <!-- Selección del modo de desarrollo -->
+        <label for="modo_de_desarrollo">Seleccione el modo de desarrollo:</label>
+        <select name="modo_de_desarrollo" id="modo_de_desarrollo">
+            <option value="Orgánico">Orgánico</option>
+            <option value="Semiorgánico">Semiorgánico</option>
+            <option value="Empotrado">Empotrado</option>
+        </select>
+    </div>
+
+    <div>
+        <!-- Ingreso del tamaño del proyecto -->
+        <label for="KLOC">Ingrese el tamaño del proyecto (en KLOC):</label>
+        <!-- Se considera en miles de líneas de código -->
+        <input type="number" name="KLOC" required>
+    </div>
     <button type="submit">ENVIAR</button>
 </form>
+
+{{-- Mostramos el error de laravel --}}
 <p>
-    {{-- Mostramos el error de laravel --}}
     @if ($errors->any())
         <div>
             <h4>Por favor corrige los siguientes errores:</h4>
