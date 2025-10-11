@@ -25,6 +25,23 @@ class COCOMOController extends Controller
         //Recibir el sueldo por persona
         $sueldoPorPersona = $request->input('sueldo_por_persona');
         echo "<br>Sueldo estimado por persona: " . $sueldoPorPersona;
+
+        //Obtener los coeficientes según el modo de desarrollo
+
+        $coeficientesBasico = $this->obtenerCoeficientesDelModoBasico($modoDesarrollo);
+        $a= $coeficientesBasico['a'];
+        $b= $coeficientesBasico['b'];
+        $c= $coeficientesBasico['c'];
+        $d= $coeficientesBasico['d'];
+
+        $esfuerzoNominal = $this->calcularEsfuerzoNominal($a, $b, $lineasDeCodigo);
+
+        $EAF = 1; //Para el modo básico, EAF es siempre 1
+        $esfuerzoAjustado = $this->calcularEsfuerzoAjustado($esfuerzoNominal, $EAF);
+        $cronograma = $this->calcularCronograma($c, $d, $esfuerzoAjustado);
+        $numeroDePersonas = $this->calcularNumeroDePersonas($esfuerzoAjustado, $cronograma);
+        $tiempo_real = $this->tiempoRealDesarrollo($cronograma, $numeroDePersonas);
+        $costoTotal = $this->calcularCostoTotal($tiempo_real, $sueldoPorPersona, $numeroDePersonas);
     }
 
     private function obtenerCoeficientesDelModoBasico($modoDesarrollo)
@@ -76,5 +93,29 @@ class COCOMOController extends Controller
             default:
                 throw new \InvalidArgumentException("Modo de desarrollo no válido");
                  }
+    }
+//Calculo de esfuerzo nominal , recibe a,b y KLOC
+    private function calcularEsfuerzoNominal($a, $b, $KLOC) {
+        return $a * pow($KLOC, $b);
+}
+//Calculo de esfuerzo ajustado , recibe esfuerzo nominal y EAF
+    private function calcularEsfuerzoAjustado($esfuerzoNominal, $EAF) {
+        return $esfuerzoNominal * $EAF;
+    }
+//Calculo del tiempo estimado, recibe c,d y esfuerzo ajustado
+    private function calcularCronograma($c, $d, $esfuerzoAjustado) {
+        return $c * pow($esfuerzoAjustado, $d);
+    }
+//Calculo del numero de personas que necesita el equipo, recibe esfuerzo ajustado y cronograma
+    private function calcularNumeroDePersonas($esfuerzoAjustado, $cronograma) {
+        return $esfuerzoAjustado / $cronograma;
+    }
+//Calculo del tiempo real de desarrollo por la cantidad de personas en el equipo, recibe cronograma y numero de personas
+    private function tiempoRealDesarrollo($cronograma, $numeroDePersonas) {
+        return $cronograma / $numeroDePersonas;
+    }
+//Calculo del costo total del proyecto, recibe tiempo real, sueldo por persona y tamaño del equipo
+    private function calcularCostoTotal($tiempo_real, $sueldoPorPersona, $tamanio_del_equipo) {
+        return $tiempo_real * $sueldoPorPersona * $tamanio_del_equipo;
     }
 }
