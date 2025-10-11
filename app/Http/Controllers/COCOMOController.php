@@ -26,4 +26,30 @@ class COCOMOController extends Controller
         $sueldoPorPersona = $request->input('sueldo_por_persona');
         echo "<br>Sueldo estimado por persona: " . $sueldoPorPersona;
     }
+
+    private function obtenerCoeficientesSegunModoDesarrollo($modoDesarrollo)
+    {
+        switch ($modoDesarrollo) {
+            case 'Orgánico':
+                return [
+                    'a'=>  2.4, 
+                    'b'=> 1.05,
+                    'c'=> 2.5,
+                    'd'=> 0.38];
+            case 'Semiorgánico':
+                return [
+                    'a'=> 3.0, 
+                    'b'=> 1.12, 
+                    'c'=> 2.5, 
+                    'd'=> 0.35];
+            case 'Empotrado':
+                return [
+                    'a'=> 3.6, 
+                    'b'=> 1.20, 
+                    'c'=> 2.5, 
+                    'd'=> 0.32];
+            default:
+                throw new \InvalidArgumentException("Modo de desarrollo no válido");
+                 }
+    }
 }
