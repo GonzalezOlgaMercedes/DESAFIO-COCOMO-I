@@ -13,7 +13,7 @@ class COCOMOController extends Controller
             'modo_de_desarrollo' => 'required|in:"Orgánico","Semiorgánico","Empotrado"',
             'KLOC' => 'required|integer|min:1',
             'sueldo_por_persona' => 'required|numeric|min:0',
-            'nivel_de_desarrollo' => 'required|in:"Básico","Intermedio","Detallado"',
+            'nivel_de_desarrollo' => 'required|in:"Básico","Intermedio"',
         ]);
         $modoDesarrollo = $request->input('modo_de_desarrollo');
         // Aquí puedes procesar el modo de desarrollo seleccionado
