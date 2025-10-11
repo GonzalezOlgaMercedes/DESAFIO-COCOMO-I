@@ -12,6 +12,7 @@ class COCOMOController extends Controller
         $request->validate([
             'modo_de_desarrollo' => 'required|in:"Orgánico","Semiorgánico","Empotrado"',
             'KLOC' => 'required|integer|min:1',
+            'sueldo_por_persona' => 'required|numeric|min:0',
         ]);
         $modoDesarrollo = $request->input('modo_de_desarrollo');
         // Aquí puedes procesar el modo de desarrollo seleccionado
@@ -20,5 +21,9 @@ class COCOMOController extends Controller
         //Recibir la cantidad de líneas de código
         $lineasDeCodigo = $request->input('KLOC');
         echo "<br>Cantidad de líneas de código: " . $lineasDeCodigo;
+
+        //Recibir el sueldo por persona
+        $sueldoPorPersona = $request->input('sueldo_por_persona');
+        echo "<br>Sueldo estimado por persona: " . $sueldoPorPersona;
     }
 }

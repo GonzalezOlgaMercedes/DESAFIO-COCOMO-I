@@ -16,6 +16,12 @@
         <!-- Se considera en miles de líneas de código -->
         <input type="number" name="KLOC" required>
     </div>
+
+    <div>
+        <!-- Ingrese el sueldo por persona -->
+        <label for="sueldo_por_persona">Ingrese el sueldo estimado por persona:</label>
+        <input type="number" name="sueldo_por_persona" required>
+    </div>
     <button type="submit">ENVIAR</button>
 </form>
 
