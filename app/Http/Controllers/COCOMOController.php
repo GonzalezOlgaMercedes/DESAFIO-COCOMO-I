@@ -32,7 +32,7 @@ class COCOMOController extends Controller
         echo "<br>Nivel de desarrollo seleccionado: " . $nivelDeDesarrollo;
     }
 
-    private function obtenerCoeficientesSegunModoDesarrollo($modoDesarrollo)
+    private function obtenerCoeficientesDelModoBasico($modoDesarrollo)
     {
         switch ($modoDesarrollo) {
             case 'Orgánico':
@@ -50,6 +50,31 @@ class COCOMOController extends Controller
             case 'Empotrado':
                 return [
                     'a'=> 3.6, 
+                    'b'=> 1.20, 
+                    'c'=> 2.5, 
+                    'd'=> 0.32];
+            default:
+                throw new \InvalidArgumentException("Modo de desarrollo no válido");
+                 }
+    }
+      private function obtenerCoeficientesDelModoIntermedio($modoDesarrollo)
+    {
+        switch ($modoDesarrollo) {
+            case 'Orgánico':
+                return [
+                    'a'=>  3.2, 
+                    'b'=> 1.05,
+                    'c'=> 2.5,
+                    'd'=> 0.38];
+            case 'Semiorgánico':
+                return [
+                    'a'=> 3.0, 
+                    'b'=> 1.12, 
+                    'c'=> 2.5, 
+                    'd'=> 0.35];
+            case 'Empotrado':
+                return [
+                    'a'=> 2.8, 
                     'b'=> 1.20, 
                     'c'=> 2.5, 
                     'd'=> 0.32];
