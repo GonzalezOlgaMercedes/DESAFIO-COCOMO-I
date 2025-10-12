@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class COCOMOController extends Controller
 {
@@ -36,8 +37,8 @@ class COCOMOController extends Controller
         $d= $coeficientesBasico['d'];
 
         $esfuerzoNominal = $this->calcularEsfuerzoNominal($a, $b, $lineasDeCodigo);
-
-        $EAF = 1; //Para el modo básico, EAF es siempre 1
+        $factores = $this->obtenerFactores($request);
+        $EAF = $this->calcularEAFDesdeFactores($factores);
         $esfuerzoAjustado = $this->calcularEsfuerzoAjustado($esfuerzoNominal, $EAF);
         $cronograma = $this->calcularCronograma($c, $d, $esfuerzoAjustado);
         $numeroDePersonas = $this->calcularNumeroDePersonas($esfuerzoAjustado, $cronograma);
@@ -121,5 +122,238 @@ class COCOMOController extends Controller
 //Calculo del costo total del proyecto, recibe tiempo real, sueldo por persona y tamaño del equipo
     private function calcularCostoTotal($tiempo_real, $sueldoPorPersona, $tamanio_del_equipo) {
         return $tiempo_real * $sueldoPorPersona * $tamanio_del_equipo;
+    }
+
+    private function obtenerFactores(Request $request)
+    {
+        $factores = [];
+        if($request->has(('confiabilidad_requerida_del_software'))){
+            $factor = [
+                "Muy Bajo" => 0.75,
+                "Bajo" => 0.88,
+                "Nominal" => 1.00,
+                "Alto" => 1.15,
+                "Muy Alto" => 1.40,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Confiabilidad requerida del software",
+                "valor" => $factor[$request->input('confiabilidad_requerida_del_software')]
+            ];
+        }
+        if($request->has(('tamanio_base_datos'))){
+            $factor = [
+                "Muy Bajo" => null,
+                "Bajo" => 0.94,
+                "Nominal" => 1.00,
+                "Alto" => 1.08,
+                "Muy Alto" => 1.16,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Tamaño de la base de datos",
+                "valor" => $factor[$request->input('tamanio_base_datos')]
+            ];
+        }
+        if($request->has(('complejidad_del_producto'))){
+            $factor = [
+                "Muy Bajo" => 0.70,
+                "Bajo" => 0.85,
+                "Nominal" => 1.00,
+                "Alto" => 1.15,
+                "Muy Alto" => 1.30,
+                "Extra Alto" => 1.65
+            ];
+            $factores[] = [
+                "nombre" => "Complejidad del producto",
+                "valor" => $factor[$request->input('complejidad_del_producto')]
+            ];
+        }
+        if ($request->has(('restricciones_de_tiempo_ejecucion'))){
+            $factor = [
+                "Muy Bajo" => null,
+                "Bajo" => null,
+                "Nominal" => 1.00,
+                "Alto" => 1.11,
+                "Muy Alto" => 1.30,
+                "Extra Alto" => 1.66
+            ];
+            $factores[] = [
+                "nombre" => "Restricciones de tiempo de ejecución",
+                "valor" => $factor[$request->input('restricciones_de_tiempo_ejecucion')]
+            ];
+        }
+        if ($request->has(('restricciones_de_memoria'))){
+            $factor = [
+                "Muy Bajo" => null,
+                "Bajo" => null,
+                "Nominal" => 1.00,
+                "Alto" => 1.06,
+                "Muy Alto" => 1.21,
+                "Extra Alto" => 1.56
+            ];
+            $factores[] = [
+                "nombre" => "Restricciones de memoria",
+                "valor" => $factor[$request->input('restricciones_de_memoria')]
+            ];
+        }
+        if ($request->has(('volatilidad_del_entorno_virtual'))){
+            $factor = [
+                "Muy Bajo" => null,
+                "Bajo" => 0.87,
+                "Nominal" => 1.00,
+                "Alto" => 1.15,
+                "Muy Alto" => 1.30,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Volatilidad del entorno virtual",
+                "valor" => $factor[$request->input('volatilidad_del_entorno_virtual')]
+            ];
+        }
+        if ($request->has(('tiempo_de_respuesta_requerido'))){
+            $factor = [
+                "Muy Bajo" => null,
+                "Bajo" => 0.87,
+                "Nominal" => 1.00,
+                "Alto" => 1.07,
+                "Muy Alto" => 1.15,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Tiempo de respuesta requerido",
+                "valor" => $factor[$request->input('tiempo_de_respuesta_requerido')]
+            ];
+        }
+
+        if ($request->has(('capacidad_de_los_analistas'))){
+            $factor = [
+                "Muy Bajo" => 1.46,
+                "Bajo" => 1.19,
+                "Nominal" => 1.00,
+                "Alto" => 0.86,
+                "Muy Alto" => 0.71,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Capacidad de los analistas",
+                "valor" => $factor[$request->input('capacidad_de_los_analistas')]
+            ];
+        }
+         
+        if ($request->has(('capacidad_de_los_programadores'))){
+            $factor = [
+                "Muy Bajo" => 1.42,
+                "Bajo" => 1.17,
+                "Nominal" => 1.00,
+                "Alto" => 0.86,
+                "Muy Alto" => 0.70,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Capacidad de los programadores",
+                "valor" => $factor[$request->input('capacidad_de_los_programadores')]
+            ];
+        }
+       
+        if ($request->has(('experiencia_en_la_aplicacion'))){
+            $factor = [
+                "Muy Bajo" => 1.29,
+                "Bajo" => 1.13,
+                "Nominal" => 1.00,
+                "Alto" => 0.91,
+                "Muy Alto" => 0.82,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Experiencia en la aplicación",
+                "valor" => $factor[$request->input('experiencia_en_la_aplicacion')]
+            ];
+        }
+        
+        if ($request->has(('experiencia_en_la_maquina'))){
+            $factor = [
+                "Muy Bajo" => 1.21,
+                "Bajo" => 1.10,
+                "Nominal" => 1.00,
+                "Alto" => 0.90,
+                "Muy Alto" => 0.80,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Experiencia en la máquina",
+                "valor" => $factor[$request->input('experiencia_en_la_maquina')]
+            ];
+        }
+        if ($request->has(('experiencia_en_el_lenguaje_de_programacion'))){
+            $factor = [
+                "Muy Bajo" => 1.14,
+                "Bajo" => 1.07,
+                "Nominal" => 1.00,
+                "Alto" => 0.95,
+                "Muy Alto" => 0.91,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Experiencia en el lenguaje de programación",
+                "valor" => $factor[$request->input('experiencia_en_el_lenguaje_de_programacion')]
+            ];
+        }
+        
+        if ($request->has(('uso_de_practicas_modernas'))){
+            $factor = [
+                "Muy Bajo" => 1.24,
+                "Bajo" => 1.10,
+                "Nominal" => 1.00,
+                "Alto" => 0.91,
+                "Muy Alto" => 0.82,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Uso de prácticas modernas",
+                "valor" => $factor[$request->input('uso_de_practicas_modernas')]
+            ];
+        }
+
+        if ($request->has(('uso_de_software_reutilizable'))){
+            $factor = [
+                "Muy Bajo" => null,
+                "Bajo" => 0.95,
+                "Nominal" => 1.00,
+                "Alto" => 1.07,
+                "Muy Alto" => 0.15,
+                "Extra Alto" => null
+            ];
+            $factores[] = [
+                "nombre" => "Uso de software reutilizable",
+                "valor" => $factor[$request->input('uso_de_software_reutilizable')]
+            ];
+        }
+   
+        if ($request->has(('restricciones_de_cronograma'))){
+            $factor = [
+                "Muy Bajo" => null,
+                "Bajo" => null,
+                "Nominal" => 1.00,
+                "Alto" => 1.04,
+                "Muy Alto" => 1.10,
+                "Extra Alto" => 1.23
+            ];
+            $factores[] = [
+                "nombre" => "Restricciones de cronograma (presión de tiempo)",
+                "valor" => $factor[$request->input('restricciones_de_cronograma')]
+            ];
+        return $factores;
+    }
+}
+    private function calcularEAFDesdeFactores($factores)
+    {
+        $EAF = 1.0;
+        foreach ($factores as $factor) {
+            if ($factor['valor'] !== null) {
+                $EAF *= $factor['valor'];
+            }
+        }
+        return $EAF;
     }
 }
