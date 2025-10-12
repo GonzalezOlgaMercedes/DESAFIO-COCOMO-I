@@ -16,7 +16,7 @@
             'factores' => $factores,
             'EAF' => $EAF,
         ]); -->
-    <h2 class="mb-4">Resultados de la Estimación - Modo Intermedio</h2>
+    <h2 class="mb-4">Resultados de la Estimación - Modo Básico</h2>
     <table class="table table-bordered">
         <tr>
             <th>Modo de Desarrollo</th>
@@ -35,12 +35,9 @@
             <td>{{ $nivel_de_desarrollo }}</td>
         </tr>
         <tr>
-            <th>Esfuerzo Nominal (Persona-Meses)</th>
+            <th>Esfuerzo (Persona-Meses)</th>
             <td>{{ $esfuerzo_nominal }} (&asymp;{{ number_format($esfuerzo_nominal, 2) }})</td>
-        </tr>
-        <tr>
-            <th>Esfuerzo Ajustado (Persona-Meses)</th>
-            <td>{{ $esfuerzo_ajustado }} (&asymp;{{ number_format($esfuerzo_ajustado, 2) }})</td>
+            <td>{{ $formula_esfuerzo_nominal }}</td>
         </tr>
         <tr>
             <th>Cronograma (Meses)</th>
@@ -60,17 +57,4 @@
         </tr>
     </table>
 </div>
-<!-- Mostrar la productoria de los Factores de ajuste aplicados escrito por extensión usando implode-->
-<h3>Productoria de Factores de Ajuste</h3>
-<p>EAF = {{ implode(' x ', array_map(function($factor) {
-    return $factor['valor'];
-}, $factores)) }} = {{ number_format(array_product(array_column($factores, 'valor')), 2) }}</p>
-<p><strong>EAF (Factor de Ajuste del Esfuerzo):</strong> {{ number_format($EAF, 2) }}</p>
-<!-- Mostrar lista de factores aplicados -->
-<h3>Factores Aplicados</h3>
-<ul>
-    @foreach ($factores as $factor)
-        <li>{{ $factor['nombre'] }}: {{ $factor['valor'] }}</li>
-    @endforeach
-</ul>
 @endsection

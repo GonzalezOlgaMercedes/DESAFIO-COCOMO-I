@@ -12,8 +12,8 @@
             <a href="{{ url('/') }}" class="navbar-brand">COCOMO</a>
             <ul>
                 <li><a href="{{ url('/') }}">Inicio</a></li>
-                <li><a href="{{ url('/estimacion') }}">Estimación</a></li>
-                <li><a href="{{ url('/acerca') }}">Acerca</a></li>
+                <li><a href="{{ route('estimacion.basica') }}">Estimación Básica</a></li>
+                <li><a href="{{ route('estimacion.intermedia') }}">Estimación Intermedia</a></li>
             </ul>
         </div>
     </nav>

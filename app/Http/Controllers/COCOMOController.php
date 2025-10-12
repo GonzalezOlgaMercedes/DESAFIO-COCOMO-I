@@ -17,6 +17,8 @@ class COCOMOController extends Controller
             'nivel_de_desarrollo' => 'required|in:"Básico","Intermedio"',
         ]);
         $modoDesarrollo = $request->input('modo_de_desarrollo');
+        $nivelDeDesarrollo = $request->input('nivel_de_desarrollo');
+
 
         //Recibir la cantidad de líneas de código
         $lineasDeCodigo = $request->input('KLOC');
@@ -25,22 +27,58 @@ class COCOMOController extends Controller
         $sueldoPorPersona = $request->input('sueldo_por_persona');
 
         //Obtener los coeficientes según el modo de desarrollo
-        $coeficientesBasico = $this->obtenerCoeficientesDelModoBasico($modoDesarrollo);
+        if($nivelDeDesarrollo == "Básico"){
+
+            $coeficientesBasico = $this->obtenerCoeficientesDelModoBasico($modoDesarrollo);
+        }
+        else {
+            $coeficientesBasico = $this->obtenerCoeficientesDelModoIntermedio($modoDesarrollo);
+        }
         $a= $coeficientesBasico['a'];
         $b= $coeficientesBasico['b'];
         $c= $coeficientesBasico['c'];
         $d= $coeficientesBasico['d'];
 
         $esfuerzoNominal = $this->calcularEsfuerzoNominal($a, $b, $lineasDeCodigo);
-        $factores = $this->obtenerFactores($request);
-        $EAF = $this->calcularEAFDesdeFactores($factores);
+        $factores = [];
+        $EAF = 1.00;
+
+        //Si el nivel de desarrollo es intermedio, calcular el EAF
+        if($nivelDeDesarrollo == "Intermedio"){
+
+            $factores = $this->obtenerFactores($request);
+            
+            //filtramos los factores nulos y nominales
+            $factores = array_filter($factores, function($factor) {
+                return $factor['valor'] !== null && $factor['valor'] !== 1.00;
+            });
+            
+            $EAF = $this->calcularEAFDesdeFactores($factores);
+        }
+
         $esfuerzoAjustado = $this->calcularEsfuerzoAjustado($esfuerzoNominal, $EAF);
         $cronograma = $this->calcularCronograma($c, $d, $esfuerzoAjustado);
         $numeroDePersonas = $this->calcularNumeroDePersonas($esfuerzoAjustado, $cronograma);
         $tiempo_real = $this->tiempoRealDesarrollo($cronograma, $numeroDePersonas);
-        $costoTotal = $this->calcularCostoTotal($tiempo_real, $sueldoPorPersona, $numeroDePersonas);
+        $costoTotal = $this->calcularCostoTotal($esfuerzoAjustado, $sueldoPorPersona);
         //Recibir el nivel de desarrollo
-        $nivelDeDesarrollo = $request->input('nivel_de_desarrollo');
+        if($nivelDeDesarrollo == "Básico"){
+                return view('calculo_nivel_basico', [
+                    'modo_de_desarrollo' => $modoDesarrollo,
+                    'KLOC' => $lineasDeCodigo,
+                    'sueldo_por_persona' => $sueldoPorPersona,
+                    'nivel_de_desarrollo' => $nivelDeDesarrollo,
+                    'esfuerzo_nominal' => $esfuerzoNominal,
+                    'formula_esfuerzo_nominal' => $this->mostrarFormulaEsfuerzoNominal($a, $b, $lineasDeCodigo),
+                    'esfuerzo_ajustado' => $esfuerzoAjustado,
+                    'cronograma' => $cronograma,
+                    'numero_de_personas' => $numeroDePersonas,
+                    'tiempo_real' => $tiempo_real,
+                    'costo_total' => $costoTotal,
+                    'factores' => $factores,
+                    'EAF' => $EAF,
+                ]);
+            }
 
         return view('calculo_nivel_intermedio', [
             'modo_de_desarrollo' => $modoDesarrollo,
@@ -52,7 +90,9 @@ class COCOMOController extends Controller
             'cronograma' => $cronograma,
             'numero_de_personas' => $numeroDePersonas,
             'tiempo_real' => $tiempo_real,
-            'costo_total' => $costoTotal
+            'costo_total' => $costoTotal,
+            'factores' => $factores,
+            'EAF' => $EAF,
         ]);
     }
 
@@ -108,11 +148,17 @@ class COCOMOController extends Controller
     }
 //Calculo de esfuerzo nominal , recibe a,b y KLOC
     private function calcularEsfuerzoNominal($a, $b, $KLOC) {
-        return $a * pow($KLOC, $b);
+        //echo formula
+        echo "<br>PMnominal =$a * $KLOC ^ $b";
+        return  floor($a *pow($KLOC, $b)*100)/100;
+}
+private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
+        return "PMnominal =$a * $KLOC ^ $b";
 }
 //Calculo de esfuerzo ajustado , recibe esfuerzo nominal y EAF
     private function calcularEsfuerzoAjustado($esfuerzoNominal, $EAF) {
-        return $esfuerzoNominal * $EAF;
+        echo "<br>PMajustado = $esfuerzoNominal * $EAF";
+        return $esfuerzoNominal * $EAF ;
     }
 //Calculo del tiempo estimado, recibe c,d y esfuerzo ajustado
     private function calcularCronograma($c, $d, $esfuerzoAjustado) {
@@ -127,8 +173,8 @@ class COCOMOController extends Controller
         return $cronograma / $numeroDePersonas;
     }
 //Calculo del costo total del proyecto, recibe tiempo real, sueldo por persona y tamaño del equipo
-    private function calcularCostoTotal($tiempo_real, $sueldoPorPersona, $tamanio_del_equipo) {
-        return $tiempo_real * $sueldoPorPersona * $tamanio_del_equipo;
+    private function calcularCostoTotal($calcular_esfuerzo_ajustado, $sueldoPorPersona) {
+        return $calcular_esfuerzo_ajustado * $sueldoPorPersona;
     }
 
     private function obtenerFactores(Request $request)
@@ -361,6 +407,7 @@ class COCOMOController extends Controller
                 $EAF *= $factor['valor'];
             }
         }
-        return $EAF;
+        return round($EAF,2);
     }
+
 }

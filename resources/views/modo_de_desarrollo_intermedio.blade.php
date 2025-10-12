@@ -24,11 +24,10 @@
     </div>
 
     <!-- Seleccionar el nivel de desarrollo -->
-    <div>
+    <div hidden>
         <label for="nivel_de_desarrollo">Seleccione el nivel de desarrollo:</label>
         <select name="nivel_de_desarrollo" id="nivel_de_desarrollo">
-            <option value="Básico">Básico</option>
-            <option value="Intermedio">Intermedio</option>
+            <option selected value="Intermedio">Intermedio</option>
         </select>
     </div>
 
