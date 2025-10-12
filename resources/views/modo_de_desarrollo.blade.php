@@ -39,9 +39,11 @@
             <!-- Confiabilidad requerida del software -->
             <label for="confiabilidad_requerida_del_software">Confiabilidad requerida del software:</label>
             <select name="confiabilidad_requerida_del_software" id="confiabilidad_requerida_del_software">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
@@ -49,9 +51,10 @@
             <!-- Tamaño de la base de datos -->
             <label for="tamanio_base_datos">Tamaño de la base de datos:</label>
             <select name="tamanio_base_datos" id="tamanio_base_datos">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
@@ -59,9 +62,12 @@
             <!-- Complejidad del producto -->
             <label for="complejidad_del_producto">Complejidad del producto:</label>
             <select name="complejidad_del_producto" id="complejidad_del_producto">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
+                <option value="Extra Alto">Extra Alto</option>
             </select>
         </div>
 
@@ -70,9 +76,10 @@
             <!-- Restricciones de tiempo de ejecución -->
             <label for="restricciones_de_tiempo_ejecucion">Restricciones de tiempo de ejecución:</label>
             <select name="restricciones_de_tiempo_ejecucion" id="restricciones_de_tiempo_ejecucion">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
+                <option value="Extra Alto">Extra Alto</option>
             </select>
         </div>
 
@@ -80,9 +87,10 @@
             <!-- Restricciones de memoria -->
             <label for="restricciones_de_memoria">Restricciones de memoria:</label>
             <select name="restricciones_de_memoria" id="restricciones_de_memoria">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
+                <option value="Extra Alto">Extra Alto</option>
             </select>
         </div>
 
@@ -90,9 +98,10 @@
             <!-- Volatilidad del entorno virtual (frecuencia de cambios HW/SW) -->
             <label for="volatilidad_del_entorno_virtual">Volatilidad del entorno virtual (frecuencia de cambios HW/SW):</label>
             <select name="volatilidad_del_entorno_virtual" id="volatilidad_del_entorno_virtual">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
@@ -100,30 +109,34 @@
             <!-- Tiempo de respuesta requerido -->
             <label for="tiempo_de_respuesta_requerido">Tiempo de respuesta requerido:</label>
             <select name="tiempo_de_respuesta_requerido" id="tiempo_de_respuesta_requerido">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
         <h3>ATRIBUTOS DEL PERSONAL</h3>
         <div>
-
             <!-- Capacidad de los analistas -->
             <label for="capacidad_de_los_analistas">Capacidad de los analistas:</label>
             <select name="capacidad_de_los_analistas" id="capacidad_de_los_analistas">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
         <div>
             <!-- Capacidad de los programadores -->
             <label for="capacidad_de_los_programadores">Capacidad de los programadores:</label>
             <select name="capacidad_de_los_programadores" id="capacidad_de_los_programadores">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
@@ -131,9 +144,11 @@
             <!-- Experiencia en la aplicación -->
             <label for="experiencia_en_la_aplicacion">Experiencia en la aplicación:</label>
             <select name="experiencia_en_la_aplicacion" id="experiencia_en_la_aplicacion">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
@@ -141,20 +156,23 @@
             <!-- Experiencia en la máquina (plataforma HW/SW) -->
             <label for="experiencia_en_la_maquina">Experiencia en la máquina (plataforma HW/SW):</label>
             <select name="experiencia_en_la_maquina" id="experiencia_en_la_maquina">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
         <div>
-
             <!-- Experiencia en el lenguaje de programación -->
             <label for="experiencia_en_el_lenguaje_de_programacion">Experiencia en el lenguaje de programación:</label>
             <select name="experiencia_en_el_lenguaje_de_programacion" id="experiencia_en_el_lenguaje_de_programacion">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
 
@@ -163,27 +181,31 @@
             <!-- Uso de prácticas modernas (herramientas CASE, metodologías) -->
             <label for="uso_de_practicas_modernas">Uso de prácticas modernas (herramientas CASE, metodologías):</label>
             <select name="uso_de_practicas_modernas" id="uso_de_practicas_modernas">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Muy Bajo">Muy Bajo</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
         <div>
             <!-- Uso de software reutilizable -->
             <label for="uso_de_software_reutilizable">Uso de software reutilizable:</label>
             <select name="uso_de_software_reutilizable" id="uso_de_software_reutilizable">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Bajo">Bajo</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
         <div>
             <!-- Restricciones de cronograma (presión de tiempo) -->
             <label for="restricciones_de_cronograma">Restricciones de cronograma (presión de tiempo):</label>
             <select name="restricciones_de_cronograma" id="restricciones_de_cronograma">
-                <option value="Baja">Baja</option>
-                <option value="Media">Media</option>
-                <option value="Alta">Alta</option>
+                <option value="Nominal">Nominal</option>
+                <option value="Alto">Alto</option>
+                <option value="Muy Alto">Muy Alto</option>
+                <option value="Extra Alto">Extra Alto</option>
             </select>
         </div>
     </div>

@@ -16,19 +16,14 @@ class COCOMOController extends Controller
             'nivel_de_desarrollo' => 'required|in:"Básico","Intermedio"',
         ]);
         $modoDesarrollo = $request->input('modo_de_desarrollo');
-        // Aquí puedes procesar el modo de desarrollo seleccionado
-        echo "<br>Modo de desarrollo seleccionado: " . $modoDesarrollo;
 
         //Recibir la cantidad de líneas de código
         $lineasDeCodigo = $request->input('KLOC');
-        echo "<br>Cantidad de líneas de código: " . $lineasDeCodigo;
 
         //Recibir el sueldo por persona
         $sueldoPorPersona = $request->input('sueldo_por_persona');
-        echo "<br>Sueldo estimado por persona: " . $sueldoPorPersona;
 
         //Obtener los coeficientes según el modo de desarrollo
-
         $coeficientesBasico = $this->obtenerCoeficientesDelModoBasico($modoDesarrollo);
         $a= $coeficientesBasico['a'];
         $b= $coeficientesBasico['b'];
@@ -45,7 +40,19 @@ class COCOMOController extends Controller
         $costoTotal = $this->calcularCostoTotal($tiempo_real, $sueldoPorPersona, $numeroDePersonas);
         //Recibir el nivel de desarrollo
         $nivelDeDesarrollo = $request->input('nivel_de_desarrollo');
-        echo "<br>Nivel de desarrollo seleccionado: " . $nivelDeDesarrollo;
+
+        return view('calculo_nivel_intermedio', [
+            'modo_de_desarrollo' => $modoDesarrollo,
+            'KLOC' => $lineasDeCodigo,
+            'sueldo_por_persona' => $sueldoPorPersona,
+            'nivel_de_desarrollo' => $nivelDeDesarrollo,
+            'esfuerzo_nominal' => $esfuerzoNominal,
+            'esfuerzo_ajustado' => $esfuerzoAjustado,
+            'cronograma' => $cronograma,
+            'numero_de_personas' => $numeroDePersonas,
+            'tiempo_real' => $tiempo_real,
+            'costo_total' => $costoTotal
+        ]);
     }
 
     private function obtenerCoeficientesDelModoBasico($modoDesarrollo)
