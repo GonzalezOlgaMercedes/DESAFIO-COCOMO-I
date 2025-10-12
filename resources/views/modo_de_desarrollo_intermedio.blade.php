@@ -1,3 +1,6 @@
+@extends('layouts.base')
+
+@section('content')
 <form method="POST" action="{{ route('modo-de-desarrollo') }}">
     @csrf
     <div>
@@ -225,3 +228,4 @@
         </div>
     @endif
 </p>
+@endsection
