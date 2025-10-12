@@ -95,56 +95,62 @@ class COCOMOController extends Controller
             'EAF' => $EAF,
         ]);
     }
-
+    //Calculo de los coeficientes a,b,c y d según el modo de desarrollo
     private function obtenerCoeficientesDelModoBasico($modoDesarrollo)
     {
         switch ($modoDesarrollo) {
             case 'Orgánico':
                 return [
-                    'a'=>  2.4, 
-                    'b'=> 1.05,
-                    'c'=> 2.5,
-                    'd'=> 0.38];
+                    'a' =>  2.4,
+                    'b' => 1.05,
+                    'c' => 2.5,
+                    'd' => 0.38
+                ];
             case 'Semiorgánico':
                 return [
-                    'a'=> 3.0, 
-                    'b'=> 1.12, 
-                    'c'=> 2.5, 
-                    'd'=> 0.35];
+                    'a' => 3.0,
+                    'b' => 1.12,
+                    'c' => 2.5,
+                    'd' => 0.35
+                ];
             case 'Empotrado':
                 return [
-                    'a'=> 3.6, 
-                    'b'=> 1.20, 
-                    'c'=> 2.5, 
-                    'd'=> 0.32];
+                    'a' => 3.6,
+                    'b' => 1.20,
+                    'c' => 2.5,
+                    'd' => 0.32
+                ];
             default:
                 throw new \InvalidArgumentException("Modo de desarrollo no válido");
-                 }
+        }
     }
-      private function obtenerCoeficientesDelModoIntermedio($modoDesarrollo)
+    private function obtenerCoeficientesDelModoIntermedio($modoDesarrollo)
     {
         switch ($modoDesarrollo) {
             case 'Orgánico':
                 return [
-                    'a'=>  3.2, 
-                    'b'=> 1.05,
-                    'c'=> 2.5,
-                    'd'=> 0.38];
+                    'a' =>  3.2,
+                    'b' => 1.05,
+                    'c' => 2.5,
+                    'd' => 0.38
+                ];
             case 'Semiorgánico':
                 return [
-                    'a'=> 3.0, 
-                    'b'=> 1.12, 
-                    'c'=> 2.5, 
-                    'd'=> 0.35];
+                    'a' => 3.0,
+                    'b' => 1.12,
+                    'c' => 2.5,
+                    'd' => 0.35
+                ];
             case 'Empotrado':
                 return [
-                    'a'=> 2.8, 
-                    'b'=> 1.20, 
-                    'c'=> 2.5, 
-                    'd'=> 0.32];
+                    'a' => 2.8,
+                    'b' => 1.20,
+                    'c' => 2.5,
+                    'd' => 0.32
+                ];
             default:
                 throw new \InvalidArgumentException("Modo de desarrollo no válido");
-                 }
+        }
     }
 //Calculo de esfuerzo nominal , recibe a,b y KLOC
     private function calcularEsfuerzoNominal($a, $b, $KLOC) {
@@ -160,27 +166,31 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
         echo "<br>PMajustado = $esfuerzoNominal * $EAF";
         return $esfuerzoNominal * $EAF ;
     }
-//Calculo del tiempo estimado, recibe c,d y esfuerzo ajustado
-    private function calcularCronograma($c, $d, $esfuerzoAjustado) {
+    //Calculo del tiempo estimado, recibe c,d y esfuerzo ajustado
+    private function calcularCronograma($c, $d, $esfuerzoAjustado)
+    {
         return $c * pow($esfuerzoAjustado, $d);
     }
-//Calculo del numero de personas que necesita el equipo, recibe esfuerzo ajustado y cronograma
-    private function calcularNumeroDePersonas($esfuerzoAjustado, $cronograma) {
+    //Calculo del numero de personas que necesita el equipo, recibe esfuerzo ajustado y cronograma
+    private function calcularNumeroDePersonas($esfuerzoAjustado, $cronograma)
+    {
         return $esfuerzoAjustado / $cronograma;
     }
-//Calculo del tiempo real de desarrollo por la cantidad de personas en el equipo, recibe cronograma y numero de personas
-    private function tiempoRealDesarrollo($cronograma, $numeroDePersonas) {
+    //Calculo del tiempo real de desarrollo por la cantidad de personas en el equipo, recibe cronograma y numero de personas
+    private function tiempoRealDesarrollo($cronograma, $numeroDePersonas)
+    {
         return $cronograma / $numeroDePersonas;
     }
 //Calculo del costo total del proyecto, recibe tiempo real, sueldo por persona y tamaño del equipo
     private function calcularCostoTotal($calcular_esfuerzo_ajustado, $sueldoPorPersona) {
         return $calcular_esfuerzo_ajustado * $sueldoPorPersona;
     }
-
+    //Función para obtener los factores de costo desde el request para el nivel intermedio
     private function obtenerFactores(Request $request)
     {
         $factores = [];
-        if($request->has(('confiabilidad_requerida_del_software'))){
+        //Atributos del producto
+        if ($request->has(('confiabilidad_requerida_del_software'))) {
             $factor = [
                 "Muy Bajo" => 0.75,
                 "Bajo" => 0.88,
@@ -194,7 +204,7 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('confiabilidad_requerida_del_software')]
             ];
         }
-        if($request->has(('tamanio_base_datos'))){
+        if ($request->has(('tamanio_base_datos'))) {
             $factor = [
                 "Muy Bajo" => null,
                 "Bajo" => 0.94,
@@ -208,7 +218,7 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('tamanio_base_datos')]
             ];
         }
-        if($request->has(('complejidad_del_producto'))){
+        if ($request->has(('complejidad_del_producto'))) {
             $factor = [
                 "Muy Bajo" => 0.70,
                 "Bajo" => 0.85,
@@ -222,7 +232,8 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('complejidad_del_producto')]
             ];
         }
-        if ($request->has(('restricciones_de_tiempo_ejecucion'))){
+        //Atributos del hardware
+        if ($request->has(('restricciones_de_tiempo_ejecucion'))) {
             $factor = [
                 "Muy Bajo" => null,
                 "Bajo" => null,
@@ -236,7 +247,7 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('restricciones_de_tiempo_ejecucion')]
             ];
         }
-        if ($request->has(('restricciones_de_memoria'))){
+        if ($request->has(('restricciones_de_memoria'))) {
             $factor = [
                 "Muy Bajo" => null,
                 "Bajo" => null,
@@ -250,7 +261,7 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('restricciones_de_memoria')]
             ];
         }
-        if ($request->has(('volatilidad_del_entorno_virtual'))){
+        if ($request->has(('volatilidad_del_entorno_virtual'))) {
             $factor = [
                 "Muy Bajo" => null,
                 "Bajo" => 0.87,
@@ -264,7 +275,7 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('volatilidad_del_entorno_virtual')]
             ];
         }
-        if ($request->has(('tiempo_de_respuesta_requerido'))){
+        if ($request->has(('tiempo_de_respuesta_requerido'))) {
             $factor = [
                 "Muy Bajo" => null,
                 "Bajo" => 0.87,
@@ -278,8 +289,9 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('tiempo_de_respuesta_requerido')]
             ];
         }
+        //Atributos del personal
 
-        if ($request->has(('capacidad_de_los_analistas'))){
+        if ($request->has(('capacidad_de_los_analistas'))) {
             $factor = [
                 "Muy Bajo" => 1.46,
                 "Bajo" => 1.19,
@@ -293,8 +305,8 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('capacidad_de_los_analistas')]
             ];
         }
-         
-        if ($request->has(('capacidad_de_los_programadores'))){
+
+        if ($request->has(('capacidad_de_los_programadores'))) {
             $factor = [
                 "Muy Bajo" => 1.42,
                 "Bajo" => 1.17,
@@ -308,8 +320,8 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('capacidad_de_los_programadores')]
             ];
         }
-       
-        if ($request->has(('experiencia_en_la_aplicacion'))){
+
+        if ($request->has(('experiencia_en_la_aplicacion'))) {
             $factor = [
                 "Muy Bajo" => 1.29,
                 "Bajo" => 1.13,
@@ -323,8 +335,8 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('experiencia_en_la_aplicacion')]
             ];
         }
-        
-        if ($request->has(('experiencia_en_la_maquina'))){
+
+        if ($request->has(('experiencia_en_la_maquina'))) {
             $factor = [
                 "Muy Bajo" => 1.21,
                 "Bajo" => 1.10,
@@ -338,7 +350,7 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('experiencia_en_la_maquina')]
             ];
         }
-        if ($request->has(('experiencia_en_el_lenguaje_de_programacion'))){
+        if ($request->has(('experiencia_en_el_lenguaje_de_programacion'))) {
             $factor = [
                 "Muy Bajo" => 1.14,
                 "Bajo" => 1.07,
@@ -352,8 +364,8 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('experiencia_en_el_lenguaje_de_programacion')]
             ];
         }
-        
-        if ($request->has(('uso_de_practicas_modernas'))){
+        // Atributos del proyecto
+        if ($request->has(('uso_de_practicas_modernas'))) {
             $factor = [
                 "Muy Bajo" => 1.24,
                 "Bajo" => 1.10,
@@ -368,7 +380,7 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
             ];
         }
 
-        if ($request->has(('uso_de_software_reutilizable'))){
+        if ($request->has(('uso_de_software_reutilizable'))) {
             $factor = [
                 "Muy Bajo" => null,
                 "Bajo" => 0.95,
@@ -382,8 +394,8 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "valor" => $factor[$request->input('uso_de_software_reutilizable')]
             ];
         }
-   
-        if ($request->has(('restricciones_de_cronograma'))){
+
+        if ($request->has(('restricciones_de_cronograma'))) {
             $factor = [
                 "Muy Bajo" => null,
                 "Bajo" => null,
@@ -396,9 +408,10 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
                 "nombre" => "Restricciones de cronograma (presión de tiempo)",
                 "valor" => $factor[$request->input('restricciones_de_cronograma')]
             ];
-        return $factores;
+            return $factores;
+        }
     }
-}
+    //Función para calcular el EAF a partir de los factores seleccionados
     private function calcularEAFDesdeFactores($factores)
     {
         $EAF = 1.0;
