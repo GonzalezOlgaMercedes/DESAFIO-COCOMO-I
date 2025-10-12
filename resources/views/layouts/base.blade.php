@@ -20,11 +20,12 @@
                     <li><a href="{{ url('/') }}" class="hover:underline">Inicio</a></li>
                     <li><a href="{{ route('estimacion.basica') }}" class="hover:underline">Estimación Básica</a></li>
                     <li><a href="{{ route('estimacion.intermedia') }}" class="hover:underline">Estimación Intermedia</a></li>
+                    <li><a href="{{ route('registros') }}" class="hover:underline">Registros</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <main class="container flex-1 mx-auto">
+    <main class="flex-1 mx-auto">
         @yield('content')
     </main>
     <footer class="flex items-center text-center text-white bg-gradient-to-l from-[#BF0034] to-[#FE8828] h-8">

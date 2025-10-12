@@ -442,4 +442,24 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
         return round($EAF,2);
     }
 
+    //Función para mostrar los registros de estimaciones
+    public function mostrarRegistros()
+    {
+        $registros = RegistroEstimacion::all();
+        return view('registros', ['registros' => $registros]); 
+    }
+
+    //mostrar un solo registro
+    public function mostrarRegistro($id)
+    {
+        $registro = RegistroEstimacion::findOrFail($id);
+        $estimacion = $registro->estimacion;
+        if($estimacion['nivel_de_desarrollo'] == "Básico"){
+            return view('calculo_nivel_basico', $estimacion);
+        }
+        else {
+            return view('calculo_nivel_intermedio', $estimacion);
+
+        }
+    }
 }
