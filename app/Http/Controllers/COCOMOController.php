@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\RegistroEstimacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -61,6 +62,24 @@ class COCOMOController extends Controller
         $numeroDePersonas = $this->calcularNumeroDePersonas($esfuerzoAjustado, $cronograma);
         $tiempo_real = $this->tiempoRealDesarrollo($cronograma, $numeroDePersonas);
         $costoTotal = $this->calcularCostoTotal($esfuerzoAjustado, $sueldoPorPersona);
+        //guardamos en la base de datos antes de enviar a la vista
+        $registro = RegistroEstimacion::create([
+            'estimacion' => [
+                'modo_de_desarrollo' => $modoDesarrollo,
+                'KLOC' => $lineasDeCodigo,
+                'sueldo_por_persona' => $sueldoPorPersona,
+                'nivel_de_desarrollo' => $nivelDeDesarrollo,
+                'esfuerzo_nominal' => $esfuerzoNominal,
+                'formula_esfuerzo_nominal' => $this->mostrarFormulaEsfuerzoNominal($a, $b, $lineasDeCodigo),
+                'esfuerzo_ajustado' => $esfuerzoAjustado,
+                'cronograma' => $cronograma,
+                'numero_de_personas' => $numeroDePersonas,
+                'tiempo_real' => $tiempo_real,
+                'costo_total' => $costoTotal,
+                'factores' => $factores,
+                'EAF' => $EAF,
+            ]
+        ]);
         //Recibir el nivel de desarrollo
         if($nivelDeDesarrollo == "Básico"){
                 return view('calculo_nivel_basico', [
