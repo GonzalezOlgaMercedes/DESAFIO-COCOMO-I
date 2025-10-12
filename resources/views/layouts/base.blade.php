@@ -10,24 +10,24 @@
     <!-- Importamos el font-family de Google -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="min-h-screen flex flex-col" style="font-family: Roboto;">
+<body class="min-h-screen flex flex-col" style="font-family: Roboto; font-weight: 200px;">
     <header>
-        <nav class="flex items-center bg-lime-600 h-8 font-bold">
+        <nav class="flex items-center bg-gradient-to-r from-[#BF0034] to-[#FFCF00] h-16 font-bold">
             <div class="container flex mx-auto">
                 <a href="{{ url('/') }}" class="navbar-brand">COCOMO</a>
                 <div class="grow"></div>
                 <ul class="flex gap-10">
-                    <li><a href="{{ url('/') }}" class="hover:underline">Inicio</a></li>
+                    <li><a href="{{ url('/') }}" class="hover:underline hover:text-lime-800">Inicio</a></li>
                     <li><a href="{{ route('estimacion.basica') }}" class="hover:underline">Estimación Básica</a></li>
                     <li><a href="{{ route('estimacion.intermedia') }}" class="hover:underline">Estimación Intermedia</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <main class="container flex-1">
+    <main class="container flex-1 mx-auto">
         @yield('content')
     </main>
-    <footer class="flex items-center text-center bg-lime-600 h-8 font-bold">
+    <footer class="flex items-center text-center bg-gradient-to-l from-[#BF0034] to-[#FFCF00] h-8 font-bold">
         <div class="container">
             <p>&copy; {{ date('Y') }} COCOMO - UTN:FRRe. Sede Formosa</p>
         </div>
