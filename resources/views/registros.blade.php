@@ -27,7 +27,7 @@
     <tbody>
         @foreach($registros as $registro)
             <tr class="group">
-                <td  class="border border-gray-300 px-2 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->id }}</a>                
+                <td  class="border border-gray-300 px-2 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->id }}</a>
             </td>
                 <td  class="border border-gray-300 px-2 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->estimacion["modo_de_desarrollo"] }}</a></td>
                 <td  class="border border-gray-300 px-2 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->estimacion["KLOC"] }}</a></td>

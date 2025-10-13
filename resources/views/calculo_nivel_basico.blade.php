@@ -16,10 +16,21 @@
             'factores' => $factores,
             'EAF' => $EAF,
         ]); -->
+
+    <!-- Formulas:
+    formula_esfuerzo_nominal  
+formula_esfuerzo_ajustado  
+formula_cronograma  
+formula_numero_de_personas  
+formula_tiempo_real  
+formula_costo_total
+ 
+    -->
     <div class="shadow-lg p-8 altura-minima-toda-la-pantalla">
         <!-- ponemos el style para que sea en mayusculas -->
     <h1 class="text-2xl text-center mb-8 font-bold text-[#BF0034]" style="text-transform: uppercase;">Resultados de la Estimación - Modo Básico</h1>
     <div class="">
+        <h2 class="uppercase text-xl font-bold text-[#BF0034] text-center">Datos Iniciales</h2>
         <div class="flex justify-between py-2">
             <p class="font-semibold pr-4">Modo de Desarrollo</p>
             <p>{{ $modo_de_desarrollo }}</p>
@@ -39,7 +50,9 @@
             <p class="font-semibold pr-4">Nivel de Desarrollo</p>
             <p>{{ $nivel_de_desarrollo }}</p>
         </div>
-
+        <div class="mt-8 border-t border-gray-300 pt-4">
+                <h2 class="uppercase text-xl font-bold text-[#BF0034] text-center">Datos Calculados</h2>
+            </div>
         <div class="flex justify-between pt-2">
             <p class="font-semibold pr-4">Esfuerzo (Persona-Meses)</p>
             <p>{{ $esfuerzo_nominal }} (&asymp;{{ number_format($esfuerzo_nominal, 2) }})</p>
@@ -48,24 +61,36 @@
             <p>{{ $formula_esfuerzo_nominal }}</p>
         </div>
 
-        <div class="flex justify-between py-2">
+        <div class="flex justify-between pt-2">
             <p class="font-semibold pr-4">Cronograma (Meses)</p>
             <p>{{ $cronograma }} (&asymp;{{ number_format($cronograma, 2) }})</p>
         </div>
+        <div class="flex justify-between pb-2 pl-2">
+            <p>{{ $formula_cronograma }}</p>
+        </div>
 
-        <div class="flex justify-between py-2">
+        <div class="flex justify-between pt-2">
             <p class="font-semibold pr-4">Número de Personas</p>
             <p>{{ $numero_de_personas }} (&asymp; {{ ceil($numero_de_personas) }})</p>
         </div>
+        <div class="flex justify-between pb-2 pl-2">
+            <p>{{ $formula_numero_de_personas }}</p>
+        </div>
 
-        <div class="flex justify-between py-2">
+        <div class="flex justify-between pt-2">
             <p class="font-semibold pr-4">Tiempo Real de Desarrollo (Meses)</p>
             <p>{{ $tiempo_real }} ({{ number_format($tiempo_real, 2) }})</p>
         </div>
+        <div class="flex justify-between pb-2 pl-2">
+            <p>{{ $formula_tiempo_real }}</p>
+        </div>
 
-        <div class="flex justify-between py-2">
+        <div class="flex justify-between pt-2">
             <p class="font-semibold pr-4">Costo Total del Proyecto</p>
             <p>${{ number_format($costo_total, 2) }}</p>
+        </div>
+        <div class="flex justify-between pb-2 pl-2">
+            <p>{{ $formula_costo_total }}</p>
         </div>
     </div>
 

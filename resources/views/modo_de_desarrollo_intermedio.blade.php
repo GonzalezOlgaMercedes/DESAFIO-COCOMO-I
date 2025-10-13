@@ -46,7 +46,7 @@
                 <select name="confiabilidad_requerida_del_software" id="confiabilidad_requerida_del_software" style="border: 1px solid #000;">
                     <option value="Muy Bajo">Muy Bajo</option>
                     <option value="Bajo">Bajo</option>
-                    <option value="Nominal">Nominal</option>
+                    <option value="Nominal" selected >Nominal</option>
                     <option value="Alto">Alto</option>
                     <option value="Muy Alto">Muy Alto</option>
                 </select>
@@ -55,7 +55,7 @@
                 <label for="tamanio_base_datos">Tamaño de la base de datos:</label>
                 <select name="tamanio_base_datos" id="tamanio_base_datos" style="border: 1px solid #000;">
                     <option value="Bajo">Bajo</option>
-                    <option value="Nominal">Nominal</option>
+                    <option value="Nominal" selected >Nominal</option>
                     <option value="Alto">Alto</option>
                     <option value="Muy Alto">Muy Alto</option>
                 </select>
@@ -65,7 +65,7 @@
                 <select name="complejidad_del_producto" id="complejidad_del_producto" style="border: 1px solid #000;">
                     <option value="Muy Bajo">Muy Bajo</option>
                     <option value="Bajo">Bajo</option>
-                    <option value="Nominal">Nominal</option>
+                    <option value="Nominal" selected >Nominal</option>
                     <option value="Alto">Alto</option>
                     <option value="Muy Alto">Muy Alto</option>
                     <option value="Extra Alto">Extra Alto</option>
@@ -77,7 +77,7 @@
         <div class="mb-4 flex justify-between">
             <label for="restricciones_de_tiempo_ejecucion">Restricciones de tiempo de ejecución:</label>
             <select name="restricciones_de_tiempo_ejecucion" id="restricciones_de_tiempo_ejecucion" style="border: 1px solid #000;">
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
                 <option value="Extra Alto">Extra Alto</option>
@@ -86,7 +86,7 @@
         <div class="mb-4 flex justify-between">
             <label for="restricciones_de_memoria">Restricciones de memoria:</label>
             <select name="restricciones_de_memoria" id="restricciones_de_memoria" style="border: 1px solid #000;">
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
                 <option value="Extra Alto">Extra Alto</option>
@@ -96,7 +96,7 @@
             <label for="volatilidad_del_entorno_virtual">Volatilidad del entorno virtual (frecuencia de cambios HW/SW):</label>
             <select name="volatilidad_del_entorno_virtual" id="volatilidad_del_entorno_virtual" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -105,7 +105,7 @@
             <label for="tiempo_de_respuesta_requerido">Tiempo de respuesta requerido:</label>
             <select name="tiempo_de_respuesta_requerido" id="tiempo_de_respuesta_requerido" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -117,7 +117,7 @@
             <select name="capacidad_de_los_analistas" id="capacidad_de_los_analistas" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -127,7 +127,7 @@
             <select name="capacidad_de_los_programadores" id="capacidad_de_los_programadores" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -137,7 +137,7 @@
             <select name="experiencia_en_la_aplicacion" id="experiencia_en_la_aplicacion" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -147,7 +147,7 @@
             <select name="experiencia_en_la_maquina" id="experiencia_en_la_maquina" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -157,7 +157,7 @@
             <select name="experiencia_en_el_lenguaje_de_programacion" id="experiencia_en_el_lenguaje_de_programacion" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -169,7 +169,7 @@
             <select name="uso_de_practicas_modernas" id="uso_de_practicas_modernas" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -178,7 +178,7 @@
             <label for="uso_de_software_reutilizable">Uso de software reutilizable:</label>
             <select name="uso_de_software_reutilizable" id="uso_de_software_reutilizable" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
@@ -186,7 +186,7 @@
         <div class="mb-4 flex justify-between">
             <label for="restricciones_de_cronograma">Restricciones de cronograma (presión de tiempo):</label>
             <select name="restricciones_de_cronograma" id="restricciones_de_cronograma" style="border: 1px solid #000;">
-                <option value="Nominal">Nominal</option>
+                <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
                 <option value="Extra Alto">Extra Alto</option>
