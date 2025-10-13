@@ -1,53 +1,72 @@
 @extends('layouts.base')
 
 @section('content')
-<form method="POST" action="{{ route('modo-de-desarrollo') }}">
-    @csrf
-    <div>
-        <!-- Selección del modo de desarrollo -->
-        <label for="modo_de_desarrollo">Seleccione el modo de desarrollo:</label>
-        <select name="modo_de_desarrollo" id="modo_de_desarrollo">
-            <option value="Orgánico">Orgánico</option>
-            <option value="Semiorgánico">Semiorgánico</option>
-            <option value="Empotrado">Empotrado</option>
-        </select>
+<div class="container mt-10 d-flex justify-content-center">
+    <div class="card shadow-lg p-8" style="max-width: 600px; border-radius: 15px;">
+        <h1 class="text-2xl text-center mb-10 fw-bold" style="color:#BF0034; font-weight: bold;">
+            ESTIMACIÓN DEL PROYECTO
+        </h1>
+
+        <form method="POST" action="{{ route('modo-de-desarrollo') }}">
+            @csrf
+
+            {{-- Selección del modo de desarrollo --}}
+            <div class="mb-3">
+                <label for="modo_de_desarrollo" class="form-label fw-semibold">Modo de desarrollo</label>
+                <select name="modo_de_desarrollo" id="modo_de_desarrollo"
+                        class="form-select shadow-sm border-2 border-danger-subtle" required>
+                    <option value="">-- Elegir --</option>
+                    <option value="Orgánico">Orgánico</option>
+                    <option value="Semiorgánico">Semiorgánico</option>
+                    <option value="Empotrado">Empotrado</option>
+                </select>
+            </div>
+
+            {{-- Tamaño del proyecto --}}
+            <div class="mb-3">
+                <label for="KLOC" class="form-label fw-semibold">Tamaño del proyecto (en KLOC)</label>
+                <input type="number" name="KLOC" id="KLOC"
+                       class="form-control shadow-sm border-2 border-danger-subtle"
+                       placeholder="Ej: 50" required>
+            </div>
+
+            {{-- Sueldo por persona --}}
+            <div class="mb-3">
+                <label for="sueldo_por_persona" class="form-label fw-semibold">Sueldo estimado por persona (mensual)</label>
+                <input type="number" name="sueldo_por_persona" id="sueldo_por_persona"
+                       class="form-control shadow-sm border-2 border-danger-subtle"
+                       placeholder="Ej: 500000" required>
+            </div>
+
+            {{-- Nivel oculto --}}
+            <div hidden>
+                <label for="nivel_de_desarrollo" class="form-label">Nivel de desarrollo</label>
+                <select name="nivel_de_desarrollo" id="nivel_de_desarrollo" class="form-select">
+                    <option selected value="Básico">Básico</option>
+                </select>
+            </div>
+
+            {{-- Botón enviar --}}
+            <div class="text-center mt-4">
+                <button type="submit"
+                    class="btn fw-bold px-5 py-2 text-white shadow"
+                    style="background: linear-gradient(90deg, #FE8828,#BF0034, #FE8828); border:none; border-radius: 3px;font-weight: bold">
+                    Enviar
+                </button>
+            </div>
+        </form>
+
+        {{-- Errores --}}
+        @if ($errors->any())
+            <div class="alert alert-danger mt-4">
+                <h5 class="fw-bold">Por favor corrige los siguientes errores:</h5>
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </div>
-
-    <div>
-        <!-- Ingreso del tamaño del proyecto -->
-        <label for="KLOC">Ingrese el tamaño del proyecto (en KLOC):</label>
-        <!-- Se considera en miles de líneas de código -->
-        <input type="number" name="KLOC" required>
-    </div>
-
-    <div>
-        <!-- Ingrese el sueldo por persona -->
-        <label for="sueldo_por_persona">Ingrese el sueldo estimado por persona:</label>
-        <input type="number" name="sueldo_por_persona" required>
-    </div>
-
-    <!-- Seleccionar el nivel de desarrollo -->
-    <div hidden>
-        <label for="nivel_de_desarrollo">Seleccione el nivel de desarrollo:</label>
-        <select name="nivel_de_desarrollo" id="nivel_de_desarrollo">
-            <option selected value="Básico">Básico</option>
-        </select>
-    </div>
-
-    <button type="submit">ENVIAR</button>
-</form>
-
-{{-- Mostramos el error de laravel --}}
-<p>
-    @if ($errors->any())
-        <div>
-            <h4>Por favor corrige los siguientes errores:</h4>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-</p>
+</div>
 @endsection

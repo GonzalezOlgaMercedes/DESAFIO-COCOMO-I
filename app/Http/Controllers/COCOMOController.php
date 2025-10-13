@@ -174,7 +174,7 @@ class COCOMOController extends Controller
 //Calculo de esfuerzo nominal , recibe a,b y KLOC
     private function calcularEsfuerzoNominal($a, $b, $KLOC) {
         //echo formula
-        echo "<br>PMnominal =$a * $KLOC ^ $b";
+       
         return  floor($a *pow($KLOC, $b)*100)/100;
 }
 private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
@@ -182,7 +182,6 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
 }
 //Calculo de esfuerzo ajustado , recibe esfuerzo nominal y EAF
     private function calcularEsfuerzoAjustado($esfuerzoNominal, $EAF) {
-        echo "<br>PMajustado = $esfuerzoNominal * $EAF";
         return $esfuerzoNominal * $EAF ;
     }
     //Calculo del tiempo estimado, recibe c,d y esfuerzo ajustado
