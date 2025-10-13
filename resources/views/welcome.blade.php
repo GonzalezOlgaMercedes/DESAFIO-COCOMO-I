@@ -13,7 +13,7 @@
             </div>
 
             <!-- Dorso -->
-            <div class="absolute inset-0 bg-[#BF0034] text-white rounded-xl shadow-lg flex flex-col items-center justify-center gap-2 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+            <div class="absolute inset-0 bg-[#FE8828] text-white rounded-xl shadow-lg flex flex-col items-center justify-center gap-2 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <p>-- NIVEL BÁSICO --</p>
                 <p>MODO ORGÁNICO</p>
                 <p>MODO SEMIORGÁNICO</p>
@@ -34,7 +34,7 @@
             </div>
 
             <!-- Dorso -->
-            <div class="absolute inset-0 bg-[#BF0034] text-white rounded-xl shadow-lg flex flex-col items-center justify-center gap-2 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+            <div class="absolute inset-0 bg-[#FE8828] text-white rounded-xl shadow-lg flex flex-col items-center justify-center gap-2 [transform:rotateY(180deg)] [backface-visibility:hidden]">
                 <p>-- NIVEL INTERMEDIO --</p>
                 <p>MODO ORGÁNICO</p>
                 <p>MODO SEMIORGÁNICO</p>

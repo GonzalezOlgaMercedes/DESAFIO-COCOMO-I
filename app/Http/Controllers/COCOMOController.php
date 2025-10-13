@@ -13,7 +13,7 @@ class COCOMOController extends Controller
     {
         $request->validate([
             'modo_de_desarrollo' => 'required|in:"Orgánico","Semiorgánico","Empotrado"',
-            'KLOC' => 'required|integer|min:1',
+            'KLOC' => 'required|integer|min:0',
             'sueldo_por_persona' => 'required|numeric|min:0',
             'nivel_de_desarrollo' => 'required|in:"Básico","Intermedio"',
         ]);

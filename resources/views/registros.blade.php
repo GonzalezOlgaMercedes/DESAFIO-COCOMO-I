@@ -8,20 +8,20 @@
 <table class="table-auto border-collapse border border-gray-400">
     <thead>
         <tr>
-            <th class="border border-gray-300 px-2 py-2">ID</th>
-            <th class="border border-gray-300 px-2 py-2">Modo de desarrollo</th>
-            <th class="border border-gray-300 px-2 py-2">KLOC</th>
-            <th class="border border-gray-300 px-2 py-2">Sueldo por persona</th>
-            <th class="border border-gray-300 px-2 py-2">Nivel de desarrollo</th>
-            <th class="border border-gray-300 px-2 py-2">Esfuerzo Nominal</th>
-            <th class="border border-gray-300 px-2 py-2">Esfuerzo Ajustado</th>
-            <th class="border border-gray-300 px-2 py-2">Cronograma</th>
-            <th class="border border-gray-300 px-2 py-2">Tamaño del equipo</th>
-            <th class="border border-gray-300 px-2 py-2">Tiempo real</th>
-            <th class="border border-gray-300 px-2 py-2">Costo total</th>
-            <th class="border border-gray-300 px-2 py-2">N° Factores</th>
-            <th class="border border-gray-300 px-2 py-2">EAF</th>
-            <th class="border border-gray-300 px-2 py-2"></th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">ID</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Modo de desarrollo</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">KLOC</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Sueldo por persona</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Nivel de desarrollo</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Esfuerzo Nominal</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Esfuerzo Ajustado</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Cronograma</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Tamaño del equipo</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Tiempo real</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">Costo total</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">N° Factores</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white">EAF</th>
+            <th class="border border-gray-300 px-2 py-2 bg-[#FE8828] text-white"></th>
         </tr>
     </thead>
     <tbody>
