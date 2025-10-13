@@ -461,4 +461,11 @@ private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
 
         }
     }
+
+    public function eliminarRegistro($id)
+    {
+        $registro = RegistroEstimacion::findOrFail($id);
+        $registro->delete();
+        return redirect()->route('registros')->with('success', 'Registro eliminado correctamente.');
+    }
 }

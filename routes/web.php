@@ -28,3 +28,4 @@ Route::get('/modo-de-desarrollo', function () {
 
 //Ruta para la ver un registro de estimación específico
 Route::get('/registros/{id}', [COCOMOController::class, 'mostrarRegistro'])->name('mostrar.registro');
+Route::delete('/registros/{id}', [COCOMOController::class, 'eliminarRegistro'])->name('eliminar.registro');
