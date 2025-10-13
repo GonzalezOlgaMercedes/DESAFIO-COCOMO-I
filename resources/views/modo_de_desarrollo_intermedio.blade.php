@@ -37,12 +37,13 @@
         </select>
     </div>
 
-
+<!-- Lista de Factores de Ajuste a aplicar en el nivel Intermedio -->
     <div>
         <div>
-            <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL PRODUCTO</h3>
+            <!-- ATRIBUTOS DEL PRODUCTO -->
+            <h3 class="mt-2 border-t border-gray-300 pt-2 font-bold">ATRIBUTOS DEL PRODUCTO</h3>
             <div class="mb-4 flex justify-between">
-                <label for="confiabilidad_requerida_del_software">Confiabilidad requerida del software:</label>
+                <label for="confiabilidad_requerida_del_software">(RELY) Confiabilidad requerida del software:</label>
                 <select name="confiabilidad_requerida_del_software" id="confiabilidad_requerida_del_software" style="border: 1px solid #000;">
                     <option value="Muy Bajo">Muy Bajo</option>
                     <option value="Bajo">Bajo</option>
@@ -52,7 +53,7 @@
                 </select>
             </div>
             <div class="mb-4 flex justify-between">
-                <label for="tamanio_base_datos">Tamaño de la base de datos:</label>
+                <label for="tamanio_base_datos">(DATA) Tamaño de la base de datos:</label>
                 <select name="tamanio_base_datos" id="tamanio_base_datos" style="border: 1px solid #000;">
                     <option value="Bajo">Bajo</option>
                     <option value="Nominal" selected >Nominal</option>
@@ -61,7 +62,7 @@
                 </select>
             </div>
             <div class="mb-4 flex justify-between">
-                <label for="complejidad_del_producto">Complejidad del producto:</label>
+                <label for="complejidad_del_producto">(CPLX) Complejidad del producto:</label>
                 <select name="complejidad_del_producto" id="complejidad_del_producto" style="border: 1px solid #000;">
                     <option value="Muy Bajo">Muy Bajo</option>
                     <option value="Bajo">Bajo</option>
@@ -72,10 +73,10 @@
                 </select>
             </div>
         </div>
-
-        <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL HARDWARE</h3>
+        <!-- ATRIBUTOS DEL HARDWARE -->
+        <h3 class="mt-2 border-t border-gray-300 pt-2 font-bold">ATRIBUTOS DEL HARDWARE</h3>
         <div class="mb-4 flex justify-between">
-            <label for="restricciones_de_tiempo_ejecucion">Restricciones de tiempo de ejecución:</label>
+            <label for="restricciones_de_tiempo_ejecucion">(TIME) Restricciones de tiempo de ejecución:</label>
             <select name="restricciones_de_tiempo_ejecucion" id="restricciones_de_tiempo_ejecucion" style="border: 1px solid #000;">
                 <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
@@ -84,7 +85,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="restricciones_de_memoria">Restricciones de memoria:</label>
+            <label for="restricciones_de_memoria">(STOR) Restricciones de memoria:</label>
             <select name="restricciones_de_memoria" id="restricciones_de_memoria" style="border: 1px solid #000;">
                 <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
@@ -93,7 +94,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="volatilidad_del_entorno_virtual">Volatilidad del entorno virtual (frecuencia de cambios HW/SW):</label>
+            <label for="volatilidad_del_entorno_virtual">(VIRT) Volatilidad del entorno virtual (frecuencia de cambios HW/SW):</label>
             <select name="volatilidad_del_entorno_virtual" id="volatilidad_del_entorno_virtual" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal" selected >Nominal</option>
@@ -102,7 +103,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="tiempo_de_respuesta_requerido">Tiempo de respuesta requerido:</label>
+            <label for="tiempo_de_respuesta_requerido">(TURN) Tiempo de respuesta requerido:</label>
             <select name="tiempo_de_respuesta_requerido" id="tiempo_de_respuesta_requerido" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal" selected >Nominal</option>
@@ -110,10 +111,10 @@
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-
-        <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL PERSONAL</h3>
+        <!-- ATRIBUTOS DEL PERSONAL INVOLUCRADO EN EL PROYECTO -->
+        <h3 class="mt-2 border-t border-gray-300 pt-2 font-bold">ATRIBUTOS DEL PERSONAL</h3>
         <div class="mb-4 flex justify-between">
-            <label for="capacidad_de_los_analistas">Capacidad de los analistas:</label>
+            <label for="capacidad_de_los_analistas">(ACAP) Capacidad de los analistas:</label>
             <select name="capacidad_de_los_analistas" id="capacidad_de_los_analistas" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
@@ -123,7 +124,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="capacidad_de_los_programadores">Capacidad de los programadores:</label>
+            <label for="capacidad_de_los_programadores">(PCAP) Capacidad de los programadores:</label>
             <select name="capacidad_de_los_programadores" id="capacidad_de_los_programadores" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
@@ -133,7 +134,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="experiencia_en_la_aplicacion">Experiencia en la aplicación:</label>
+            <label for="experiencia_en_la_aplicacion">(AEXP) Experiencia en aplicaciones similares:</label>
             <select name="experiencia_en_la_aplicacion" id="experiencia_en_la_aplicacion" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
@@ -143,7 +144,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="experiencia_en_la_maquina">Experiencia en la máquina (plataforma HW/SW):</label>
+            <label for="experiencia_en_la_maquina">(VEXP) Experiencia en la máquina virtual (plataforma HW/SW):</label>
             <select name="experiencia_en_la_maquina" id="experiencia_en_la_maquina" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
@@ -153,7 +154,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="experiencia_en_el_lenguaje_de_programacion">Experiencia en el lenguaje de programación:</label>
+            <label for="experiencia_en_el_lenguaje_de_programacion">(LEXP) Experiencia en el lenguaje de programación:</label>
             <select name="experiencia_en_el_lenguaje_de_programacion" id="experiencia_en_el_lenguaje_de_programacion" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
@@ -162,10 +163,10 @@
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-
-        <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL PROYECTO</h3>
+        <!-- ATRIBUTOS DEL PROYECTO -->
+        <h3 class="mt-2 border-t border-gray-300 pt-2 font-bold">ATRIBUTOS DEL PROYECTO</h3>
         <div class="mb-4 flex justify-between">
-            <label class="mr-4" for="uso_de_practicas_modernas">Uso de prácticas modernas (herramientas CASE, metodologías):</label>
+            <label class="mr-4" for="uso_de_practicas_modernas">(MODP) Uso de prácticas modernas (herramientas CASE, metodologías):</label>
             <select name="uso_de_practicas_modernas" id="uso_de_practicas_modernas" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
@@ -175,7 +176,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="uso_de_software_reutilizable">Uso de software reutilizable:</label>
+            <label for="uso_de_software_reutilizable">(TOOL) Uso de software reutilizable:</label>
             <select name="uso_de_software_reutilizable" id="uso_de_software_reutilizable" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal" selected >Nominal</option>
@@ -184,7 +185,7 @@
             </select>
         </div>
         <div class="mb-4 flex justify-between">
-            <label for="restricciones_de_cronograma">Restricciones de cronograma (presión de tiempo):</label>
+            <label for="restricciones_de_cronograma">(SCED) Restricciones de cronograma (presión de tiempo):</label>
             <select name="restricciones_de_cronograma" id="restricciones_de_cronograma" style="border: 1px solid #000;">
                 <option value="Nominal" selected >Nominal</option>
                 <option value="Alto">Alto</option>
