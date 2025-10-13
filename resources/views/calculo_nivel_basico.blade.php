@@ -57,15 +57,19 @@ formula_costo_total
             <p class="font-semibold pr-4">Esfuerzo (Persona-Meses)</p>
             <p>{{ $esfuerzo_nominal }} (&asymp;{{ number_format($esfuerzo_nominal, 2) }})</p>
         </div>
-        <div class="flex justify-between pb-2 pl-2">
-            <p>{{ $formula_esfuerzo_nominal }}</p>
+        <div class="pb-2 pl-2">
+            <!-- Mostramos la fórmula para calcular el Esfuerzo Nominal -->
+            <p>PM = a * (KLOC ^ b)</p>
+            <p>{{ str_replace('PMnominal','PM',$formula_esfuerzo_nominal) }}</p>
         </div>
 
         <div class="flex justify-between pt-2">
             <p class="font-semibold pr-4">Cronograma (Meses)</p>
             <p>{{ $cronograma }} (&asymp;{{ number_format($cronograma, 2) }})</p>
         </div>
-        <div class="flex justify-between pb-2 pl-2">
+        <div class="pb-2 pl-2">
+            <!-- Mostramos la Fórmula original para calcular el Cronograma -->
+            <p>TDEV = c * (PM ^ d)</p>
             <p>{{ $formula_cronograma }}</p>
         </div>
 
@@ -73,7 +77,9 @@ formula_costo_total
             <p class="font-semibold pr-4">Número de Personas</p>
             <p>{{ $numero_de_personas }} (&asymp; {{ ceil($numero_de_personas) }})</p>
         </div>
-        <div class="flex justify-between pb-2 pl-2">
+        <div class="pb-2 pl-2">
+            <!-- Mostramos la fórmula para calcular el Número de Personas -->
+            <p>P = PM / TDEV</p>
             <p>{{ $formula_numero_de_personas }}</p>
         </div>
 
@@ -81,7 +87,9 @@ formula_costo_total
             <p class="font-semibold pr-4">Tiempo Real de Desarrollo (Meses)</p>
             <p>{{ $tiempo_real }} ({{ number_format($tiempo_real, 2) }})</p>
         </div>
-        <div class="flex justify-between pb-2 pl-2">
+        <div class="pb-2 pl-2">
+            <!-- Mostramos la fórmula para calcular el Tiempo Real de Desarrollo -->
+            <p>TDEVreal = TDEV / P</p>
             <p>{{ $formula_tiempo_real }}</p>
         </div>
 
@@ -89,7 +97,10 @@ formula_costo_total
             <p class="font-semibold pr-4">Costo Total del Proyecto</p>
             <p>${{ number_format($costo_total, 2) }}</p>
         </div>
-        <div class="flex justify-between pb-2 pl-2">
+        <div class="pb-2 pl-2">
+            <!-- Mostramos la fórmula para calcular el Costo Total del Proyecto -->
+            <p>C = P * Salario Medio * TDEVreal</p>
+            <p>C = PM * Salario Medio</p>
             <p>{{ $formula_costo_total }}</p>
         </div>
     </div>

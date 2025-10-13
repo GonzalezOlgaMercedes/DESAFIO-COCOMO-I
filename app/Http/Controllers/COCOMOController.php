@@ -157,7 +157,7 @@ class COCOMOController extends Controller
     }
 //Mostrar la fórmula de esfuerzo nominal
     private function mostrarFormulaEsfuerzoNominal($a, $b, $KLOC):string {
-        return "PMnominal =$a * $KLOC ^ $b";
+        return "PMnominal = $a * $KLOC ^ $b";
     }
 //Cálculo de esfuerzo ajustado , recibe esfuerzo nominal y EAF
     private function calcularEsfuerzoAjustado($esfuerzoNominal, $EAF) {
@@ -181,14 +181,15 @@ class COCOMOController extends Controller
     }
 //Mostrar la fórmula del número de personas necesarias para el proyecto
     private function mostrarFormulaNumeroDePersonas($esfuerzoAjustado, $cronograma): string {
-        return "PM = $esfuerzoAjustado ÷ $cronograma";
+        return "P = $esfuerzoAjustado ÷ $cronograma";
     }
 //Cálculo del tiempo real de desarrollo por la cantidad de personas en el equipo, recibe cronograma y numero de personas
     private function tiempoRealDesarrollo($cronograma, $numeroDePersonas){
         return $cronograma / $numeroDePersonas;
     }
+//Mostrar la fórmula del tiempo real de desarrollo
     private function mostrarFormulaTiempoRealDesarrollo($cronograma, $numeroDePersonas): string {
-        return "TDEV = $cronograma ÷ $numeroDePersonas";
+        return "TDEVreal = $cronograma ÷ $numeroDePersonas";
     }
 //Cálculo del costo total del proyecto, recibe tiempo real, sueldo por persona y tamaño del equipo
     private function calcularCostoTotal($calcular_esfuerzo_ajustado, $sueldoPorPersona) {
@@ -449,6 +450,19 @@ class COCOMOController extends Controller
     {
         $registro = RegistroEstimacion::findOrFail($id);
         $estimacion = $registro->estimacion;
+        //Volvemos a calcular las formulas para mostrarlas en la vista
+        
+
+        $estimacion['formula_esfuerzo_nominal'] = $this->mostrarFormulaEsfuerzoNominal($this->obtenerCoeficientesDelModoBasico($estimacion['modo_de_desarrollo'])['a'], $this->obtenerCoeficientesDelModoBasico($estimacion['modo_de_desarrollo'])['b'], $estimacion['KLOC']);
+        $estimacion['formula_esfuerzo_ajustado'] = $this->mostrarFormulaEsfuerzoAjustado($estimacion['esfuerzo_nominal'], $estimacion['EAF']);
+        $estimacion['formula_cronograma'] = $this->mostrarFormulaCronograma($this->obtenerCoeficientesDelModoBasico($estimacion['modo_de_desarrollo'])['c'], $this->obtenerCoeficientesDelModoBasico($estimacion['modo_de_desarrollo'])['d'], $estimacion['esfuerzo_ajustado']);
+        $estimacion['formula_numero_de_personas'] = $this->mostrarFormulaNumeroDePersonas($estimacion['esfuerzo_ajustado'], $estimacion['cronograma']);
+        $estimacion['formula_tiempo_real'] = $this->mostrarFormulaTiempoRealDesarrollo($estimacion['cronograma'], $estimacion['numero_de_personas']);
+        $estimacion['formula_costo_total'] = $this->mostrarFormulaCostoTotal($estimacion['esfuerzo_ajustado'], $estimacion['sueldo_por_persona']);
+        //Actualizamos el registro con las nuevas formulas
+        $registro->estimacion = $estimacion;
+        $registro->save();
+
         if($estimacion['nivel_de_desarrollo'] == "Básico"){
             return view('calculo_nivel_basico', $estimacion);
         }
