@@ -1,17 +1,17 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="container mt-10 d-flex justify-content-center">
-    <div class="card shadow-lg p-8" style="max-width: 600px; border-radius: 15px;">
-        <h1 class="text-2xl text-center mb-10 fw-bold" style="color:#BF0034; font-weight: bold;">
-            ESTIMACIÓN DEL PROYECTO
+<div class="flex justify-center items-center altura-minima-toda-la-pantalla">
+    <div class="shadow-lg p-8" style="border-radius: 15px;">
+        <h1 class="text-2xl text-center mb-10 font-bold text-[#BF0034]">
+            ESTIMACIÓN BÁSICA DEL PROYECTO
         </h1>
 
         <form method="POST" action="{{ route('modo-de-desarrollo') }}">
             @csrf
 
             {{-- Selección del modo de desarrollo --}}
-            <div class="mb-3">
+            <div class="mb-3 flex justify-between">
                 <label for="modo_de_desarrollo" class="form-label fw-semibold">Modo de desarrollo</label>
                 <select name="modo_de_desarrollo" id="modo_de_desarrollo"
                         class="form-select shadow-sm border-2 border-danger-subtle" required>
@@ -23,7 +23,7 @@
             </div>
 
             {{-- Tamaño del proyecto --}}
-            <div class="mb-3">
+            <div class="mb-3 flex justify-between">
                 <label for="KLOC" class="form-label fw-semibold">Tamaño del proyecto (en KLOC)</label>
                 <input type="number" name="KLOC" id="KLOC"
                        class="form-control shadow-sm border-2 border-danger-subtle"
@@ -31,8 +31,8 @@
             </div>
 
             {{-- Sueldo por persona --}}
-            <div class="mb-3">
-                <label for="sueldo_por_persona" class="form-label fw-semibold">Sueldo estimado por persona (mensual)</label>
+            <div class="mb-3 flex justify-between">
+                <label for="sueldo_por_persona" class="form-label fw-semibold mr-6">Sueldo estimado por persona (mensual)</label>
                 <input type="number" name="sueldo_por_persona" id="sueldo_por_persona"
                        class="form-control shadow-sm border-2 border-danger-subtle"
                        placeholder="Ej: 500000" required>

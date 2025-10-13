@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!-- tailwind css -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        /*min-h-[calc(100vh-24*var(--spacing))]*/
+        .altura-minima-toda-la-pantalla {
+            min-height: calc(100vh - 24 * var(--spacing));
+        }
+    </style>
     <!-- Importamos el font-family de Google -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -25,10 +31,10 @@
             </div>
         </nav>
     </header>
-    <main class="flex-1 mx-auto">
+    <main class="flex-1 mx-auto w-full">
         @yield('content')
     </main>
-    <footer class="flex items-center text-center text-white bg-gradient-to-l from-[#BF0034] to-[#FE8828] h-8 mt-4">
+    <footer class="flex items-center text-center text-white bg-gradient-to-l from-[#BF0034] to-[#FE8828] h-8">
         <div class="container">
             <p>&copy; {{ date('Y') }} COCOMO - UTN:FRRe. Sede Formosa</p>
         </div>
