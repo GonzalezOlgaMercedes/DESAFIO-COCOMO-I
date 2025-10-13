@@ -1,7 +1,7 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="flex justify-center">
+<div class="flex altura-minima-toda-la-pantalla items-center justify-center">
      <div class="shadow-lg p-8" style="border-radius: 15px;">
         <h1 class="text-2xl text-center mb-10 font-bold text-[#BF0034]">
             ESTIMACIÓN INTERMEDIA DEL PROYECTO
@@ -20,7 +20,7 @@
 
     <div class="mb-4 flex justify-between">
         <!-- Ingreso del tamaño del proyecto -->
-        <label for="KLOC">Ingrese el tamaño del proyecto (en KLOC):</label>
+        <label class="mr-4" for="KLOC">Ingrese el tamaño del proyecto (en KLOC):</label>
         <input type="number" name="KLOC" required style="border: 1px solid #000;">
     </div>
 
@@ -37,8 +37,16 @@
         </select>
     </div>
 
+    <div class="text-center">
+        <button
+        class="text-[#BF0034] hover:text-[#BF0034]/70 cursor-pointer"
+        type="button"
+        onclick="document.getElementById('contenedor_de_factores').removeAttribute('hidden'); this.setAttribute('hidden', true);"
+        > + Añadir Factores de Ajuste</button>
+    </div>
+
 <!-- Lista de Factores de Ajuste a aplicar en el nivel Intermedio -->
-    <div>
+    <div hidden id="contenedor_de_factores">
         <div>
             <!-- ATRIBUTOS DEL PRODUCTO -->
             <h3 class="mt-2 border-t border-gray-300 pt-2 font-bold">ATRIBUTOS DEL PRODUCTO</h3>
@@ -198,7 +206,7 @@
     {{-- Botón enviar --}}
     <div class="text-center mt-4">
         <button type="submit"
-            class="btn fw-bold px-5 py-2 text-white shadow"
+            class="btn fw-bold px-5 py-2 text-white shadow cursor-pointer"
             style="background: linear-gradient(90deg, #FE8828,#BF0034, #FE8828); border:none; border-radius: 3px;font-weight: bold">
             Enviar
         </button>

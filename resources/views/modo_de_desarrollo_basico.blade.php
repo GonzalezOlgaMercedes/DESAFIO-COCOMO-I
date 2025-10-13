@@ -14,7 +14,7 @@
             <div class="mb-3 flex justify-between">
                 <label for="modo_de_desarrollo" class="form-label fw-semibold">Modo de desarrollo</label>
                 <select name="modo_de_desarrollo" id="modo_de_desarrollo"
-                        class="form-select shadow-sm border-2 border-danger-subtle" required>
+                        class="form-select shadow-sm" style="border: 1px solid #000;" required>
                     <option value="">-- Elegir --</option>
                     <option value="Orgánico">Orgánico</option>
                     <option value="Semiorgánico">Semiorgánico</option>
@@ -26,7 +26,7 @@
             <div class="mb-3 flex justify-between">
                 <label for="KLOC" class="form-label fw-semibold">Tamaño del proyecto (en KLOC)</label>
                 <input type="number" name="KLOC" id="KLOC"
-                       class="form-control shadow-sm border-2 border-danger-subtle"
+                       class="form-control shadow-sm" style="border: 1px solid #000;"
                        placeholder="Ej: 50" required>
             </div>
 
@@ -34,7 +34,7 @@
             <div class="mb-3 flex justify-between">
                 <label for="sueldo_por_persona" class="form-label fw-semibold mr-6">Sueldo estimado por persona (mensual)</label>
                 <input type="number" name="sueldo_por_persona" id="sueldo_por_persona"
-                       class="form-control shadow-sm border-2 border-danger-subtle"
+                       class="form-control shadow-sm" style="border: 1px solid #000;"
                        placeholder="Ej: 500000" required>
             </div>
 
@@ -49,8 +49,8 @@
             {{-- Botón enviar --}}
             <div class="text-center mt-4">
                 <button type="submit"
-                    class="btn fw-bold px-5 py-2 text-white shadow"
-                    style="background: linear-gradient(90deg, #FE8828,#BF0034, #FE8828); border:none; border-radius: 3px;font-weight: bold">
+                    class="btn fw-bold px-5 py-2 text-white shadow cursor-pointer"
+                    style="background: linear-gradient(90deg, #FE8828,#BF0034, #FE8828); border:none; border-radius: 3px;font-weight: bold;">
                     Enviar
                 </button>
             </div>
