@@ -1,7 +1,7 @@
 @extends('layouts.base')
-
+<style></style>
 @section('content')
-<div class="container mt-4">
+<div class="container mt-4 d-flex justify-content-center">
 <!-- return view('calculo_nivel_intermedio', [
             'modo_de_desarrollo' => $modoDesarrollo,
             'KLOC' => $lineasDeCodigo,
