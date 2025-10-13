@@ -18,7 +18,7 @@
 </head>
 <body class="min-h-screen flex flex-col" style="font-family: Roboto; font-weight: 200px;">
     <header>
-        <nav class="flex items-center bg-gradient-to-r from-[#BF0034] to-[#FE8828] h-16 font-bold text-white">
+        <nav class="px-4 flex items-center bg-gradient-to-r from-[#BF0034] to-[#FE8828] h-16 font-bold text-white">
             <div class="container flex mx-auto">
                 <a href="{{ url('/') }}" class="navbar-brand">COCOMO</a>
                 <div class="grow"></div>

@@ -88,22 +88,28 @@ formula_costo_total
             </div>
         </div>
 
-        <div class="mt-8 border-t border-gray-300 pt-4">
-            <h2 class="uppercase text-xl font-bold text-[#BF0034] mb-2">Productoria de Factores de Ajuste</h2>
-            <p>EAF = {{ implode(' x ', array_map(function($factor) {
-            return $factor['valor'];
-        }, $factores)) }}{{ number_format(array_product(array_column($factores, 'valor')), 2) }}</p>
-        <p><strong>EAF (Factor de Ajuste del Esfuerzo):</strong> {{ number_format($EAF, 2) }}</p>
-        </div>
-        
-        <div class="mt-6">
-            <h2 class="uppercase text-xl font-bold text-[#BF0034] mb-2">Factores Aplicados</h2>
-            <ul class="list-disc pl-5">
-                @foreach ($factores as $factor)
-                <li>{{ $factor['nombre'] }}: {{ $factor['valor'] }}</li>
-                @endforeach
-            </ul>
-        </div>
+        @if(count($factores) > 0)
+            <div class="mt-8 border-t border-gray-300 pt-4">
+                <h2 class="uppercase text-xl font-bold text-[#BF0034] mb-2">Productoria de Factores de Ajuste</h2>
+                <p>EAF = {{ implode(' x ', array_map(function($factor) {
+                return $factor['valor'];
+            }, $factores)) }}{{ number_format(array_product(array_column($factores, 'valor')), 2) }}</p>
+            <p><strong>EAF (Factor de Ajuste del Esfuerzo):</strong> {{ number_format($EAF, 2) }}</p>
+            </div>
+            
+            <div class="mt-6">
+                <h2 class="uppercase text-xl font-bold text-[#BF0034] mb-2">Factores Aplicados</h2>
+                <ul class="list-disc pl-5">
+                    @foreach ($factores as $factor)
+                    <li>{{ $factor['nombre'] }}: {{ $factor['valor'] }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @else
+            <div class="mt-8 border-t border-gray-300 pt-4 text-center">
+                <h2 class="uppercase text-lg font-bold text-[#BF0034] mb-2">No se aplicaron factores de ajuste</h2>
+            </div>
+        @endif
 
         <div class="flex justify-end py-4">
             <a href="{{ route('registros') }}" class="inline-block bg-[#BF0034] text-white py-2 px-4 rounded hover:bg-[#A0002D]">
