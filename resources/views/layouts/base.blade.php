@@ -28,7 +28,7 @@
     <main class="flex-1 mx-auto">
         @yield('content')
     </main>
-    <footer class="flex items-center text-center text-white bg-gradient-to-l from-[#BF0034] to-[#FE8828] h-8">
+    <footer class="flex items-center text-center text-white bg-gradient-to-l from-[#BF0034] to-[#FE8828] h-8 mt-4">
         <div class="container">
             <p>&copy; {{ date('Y') }} COCOMO - UTN:FRRe. Sede Formosa</p>
         </div>

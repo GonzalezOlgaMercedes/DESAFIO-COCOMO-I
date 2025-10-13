@@ -21,20 +21,20 @@
     </thead>
     <tbody>
         @foreach($registros as $registro)
-            <tr>
-                <td  class="border border-gray-300 px-4 py-2">{{ $registro->id }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ $registro->estimacion["modo_de_desarrollo"] }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ $registro->estimacion["KLOC"] }}</td>
-                <td  class="border border-gray-300 px-4 py-2">${{ ceil($registro->estimacion["sueldo_por_persona"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ $registro->estimacion["nivel_de_desarrollo"] }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ ceil($registro->estimacion["esfuerzo_nominal"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ ceil($registro->estimacion["esfuerzo_ajustado"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ ceil($registro->estimacion["cronograma"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ ceil($registro->estimacion["numero_de_personas"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ ceil($registro->estimacion["tiempo_real"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">${{ ceil($registro->estimacion["costo_total"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ count($registro->estimacion["factores"]) }}</td>
-                <td  class="border border-gray-300 px-4 py-2">{{ $registro->estimacion["EAF"] }}</td>
+            <tr class="group">
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->id }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->estimacion["modo_de_desarrollo"] }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->estimacion["KLOC"] }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ ceil($registro->estimacion["sueldo_por_persona"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->estimacion["nivel_de_desarrollo"] }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ ceil($registro->estimacion["esfuerzo_nominal"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ ceil($registro->estimacion["esfuerzo_ajustado"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ ceil($registro->estimacion["cronograma"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ ceil($registro->estimacion["numero_de_personas"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ ceil($registro->estimacion["tiempo_real"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">${{ ceil($registro->estimacion["costo_total"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ count($registro->estimacion["factores"]) }}</a></td>
+                <td  class="border border-gray-300 px-4 py-2 group-hover:bg-gray-100"><a href="{{ route('mostrar.registro', $registro->id) }}">{{ $registro->estimacion["EAF"] }}</a></td>
             </tr>
         @endforeach
     </tbody>

@@ -3,114 +3,102 @@
 @section('content')
 <form method="POST" action="{{ route('modo-de-desarrollo') }}">
     @csrf
-    <div>
+    <div style="margin-bottom: 16px;"></div>
         <!-- Selección del modo de desarrollo -->
         <label for="modo_de_desarrollo">Seleccione el modo de desarrollo:</label>
-        <select name="modo_de_desarrollo" id="modo_de_desarrollo">
+        <select name="modo_de_desarrollo" id="modo_de_desarrollo" style="border: 1px solid #000;">
             <option value="Orgánico">Orgánico</option>
             <option value="Semiorgánico">Semiorgánico</option>
             <option value="Empotrado">Empotrado</option>
         </select>
     </div>
 
-    <div>
+    <div style="margin-bottom: 16px;">
         <!-- Ingreso del tamaño del proyecto -->
         <label for="KLOC">Ingrese el tamaño del proyecto (en KLOC):</label>
-        <!-- Se considera en miles de líneas de código -->
-        <input type="number" name="KLOC" required>
+        <input type="number" name="KLOC" required style="border: 1px solid #000;">
     </div>
 
-    <div>
+    <div style="margin-bottom: 16px;">
         <!-- Ingrese el sueldo por persona -->
         <label for="sueldo_por_persona">Ingrese el sueldo estimado por persona:</label>
-        <input type="number" name="sueldo_por_persona" required>
+        <input type="number" name="sueldo_por_persona" required style="border: 1px solid #000;">
     </div>
 
-    <!-- Seleccionar el nivel de desarrollo -->
-    <div hidden>
+    <div hidden style="margin-bottom: 16px;">
         <label for="nivel_de_desarrollo">Seleccione el nivel de desarrollo:</label>
-        <select name="nivel_de_desarrollo" id="nivel_de_desarrollo">
+        <select name="nivel_de_desarrollo" id="nivel_de_desarrollo" style="border: 1px solid #000;">
             <option selected value="Intermedio">Intermedio</option>
         </select>
     </div>
 
-    <!-- Seleccionar los factores de ajuste y su nivel de influencia -->
+    
     <div>
         <div>
-            <h3>ATRIBUTOS DEL PRODUCTO</h3>
-            <!-- Confiabilidad requerida del software -->
-            <label for="confiabilidad_requerida_del_software">Confiabilidad requerida del software:</label>
-            <select name="confiabilidad_requerida_del_software" id="confiabilidad_requerida_del_software">
-                <option value="Muy Bajo">Muy Bajo</option>
-                <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
-                <option value="Alto">Alto</option>
-                <option value="Muy Alto">Muy Alto</option>
-            </select>
+            <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL PRODUCTO</h3>
+            <div style="margin-bottom: 16px;">
+                <label for="confiabilidad_requerida_del_software">Confiabilidad requerida del software:</label>
+                <select name="confiabilidad_requerida_del_software" id="confiabilidad_requerida_del_software" style="border: 1px solid #000;">
+                    <option value="Muy Bajo">Muy Bajo</option>
+                    <option value="Bajo">Bajo</option>
+                    <option value="Nominal">Nominal</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Muy Alto">Muy Alto</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 16px;">
+                <label for="tamanio_base_datos">Tamaño de la base de datos:</label>
+                <select name="tamanio_base_datos" id="tamanio_base_datos" style="border: 1px solid #000;">
+                    <option value="Bajo">Bajo</option>
+                    <option value="Nominal">Nominal</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Muy Alto">Muy Alto</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 16px;">
+                <label for="complejidad_del_producto">Complejidad del producto:</label>
+                <select name="complejidad_del_producto" id="complejidad_del_producto" style="border: 1px solid #000;">
+                    <option value="Muy Bajo">Muy Bajo</option>
+                    <option value="Bajo">Bajo</option>
+                    <option value="Nominal">Nominal</option>
+                    <option value="Alto">Alto</option>
+                    <option value="Muy Alto">Muy Alto</option>
+                    <option value="Extra Alto">Extra Alto</option>
+                </select>
+            </div>
         </div>
 
-        <div>
-            <!-- Tamaño de la base de datos -->
-            <label for="tamanio_base_datos">Tamaño de la base de datos:</label>
-            <select name="tamanio_base_datos" id="tamanio_base_datos">
-                <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
-                <option value="Alto">Alto</option>
-                <option value="Muy Alto">Muy Alto</option>
-            </select>
-        </div>
-
-        <div>
-            <!-- Complejidad del producto -->
-            <label for="complejidad_del_producto">Complejidad del producto:</label>
-            <select name="complejidad_del_producto" id="complejidad_del_producto">
-                <option value="Muy Bajo">Muy Bajo</option>
-                <option value="Bajo">Bajo</option>
-                <option value="Nominal">Nominal</option>
-                <option value="Alto">Alto</option>
-                <option value="Muy Alto">Muy Alto</option>
-                <option value="Extra Alto">Extra Alto</option>
-            </select>
-        </div>
-
-        <h3>ATRIBUTOS DEL HARDWARE</h3>
-        <div>
-            <!-- Restricciones de tiempo de ejecución -->
+        <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL HARDWARE</h3>
+        <div style="margin-bottom: 16px;">
             <label for="restricciones_de_tiempo_ejecucion">Restricciones de tiempo de ejecución:</label>
-            <select name="restricciones_de_tiempo_ejecucion" id="restricciones_de_tiempo_ejecucion">
+            <select name="restricciones_de_tiempo_ejecucion" id="restricciones_de_tiempo_ejecucion" style="border: 1px solid #000;">
                 <option value="Nominal">Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
                 <option value="Extra Alto">Extra Alto</option>
             </select>
         </div>
-
-        <div>
-            <!-- Restricciones de memoria -->
+        <div style="margin-bottom: 16px;">
             <label for="restricciones_de_memoria">Restricciones de memoria:</label>
-            <select name="restricciones_de_memoria" id="restricciones_de_memoria">
+            <select name="restricciones_de_memoria" id="restricciones_de_memoria" style="border: 1px solid #000;">
                 <option value="Nominal">Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
                 <option value="Extra Alto">Extra Alto</option>
             </select>
         </div>
-
-        <div>
-            <!-- Volatilidad del entorno virtual (frecuencia de cambios HW/SW) -->
+        <div style="margin-bottom: 16px;">
             <label for="volatilidad_del_entorno_virtual">Volatilidad del entorno virtual (frecuencia de cambios HW/SW):</label>
-            <select name="volatilidad_del_entorno_virtual" id="volatilidad_del_entorno_virtual">
+            <select name="volatilidad_del_entorno_virtual" id="volatilidad_del_entorno_virtual" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-
-        <div>
-            <!-- Tiempo de respuesta requerido -->
+        <div style="margin-bottom: 16px;">
             <label for="tiempo_de_respuesta_requerido">Tiempo de respuesta requerido:</label>
-            <select name="tiempo_de_respuesta_requerido" id="tiempo_de_respuesta_requerido">
+            <select name="tiempo_de_respuesta_requerido" id="tiempo_de_respuesta_requerido" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
                 <option value="Alto">Alto</option>
@@ -118,11 +106,10 @@
             </select>
         </div>
 
-        <h3>ATRIBUTOS DEL PERSONAL</h3>
-        <div>
-            <!-- Capacidad de los analistas -->
+        <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL PERSONAL</h3>
+        <div style="margin-bottom: 16px;">
             <label for="capacidad_de_los_analistas">Capacidad de los analistas:</label>
-            <select name="capacidad_de_los_analistas" id="capacidad_de_los_analistas">
+            <select name="capacidad_de_los_analistas" id="capacidad_de_los_analistas" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
@@ -130,10 +117,9 @@
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-        <div>
-            <!-- Capacidad de los programadores -->
+        <div style="margin-bottom: 16px;">
             <label for="capacidad_de_los_programadores">Capacidad de los programadores:</label>
-            <select name="capacidad_de_los_programadores" id="capacidad_de_los_programadores">
+            <select name="capacidad_de_los_programadores" id="capacidad_de_los_programadores" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
@@ -141,11 +127,9 @@
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-
-        <div>
-            <!-- Experiencia en la aplicación -->
+        <div style="margin-bottom: 16px;">
             <label for="experiencia_en_la_aplicacion">Experiencia en la aplicación:</label>
-            <select name="experiencia_en_la_aplicacion" id="experiencia_en_la_aplicacion">
+            <select name="experiencia_en_la_aplicacion" id="experiencia_en_la_aplicacion" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
@@ -153,11 +137,9 @@
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-
-        <div>
-            <!-- Experiencia en la máquina (plataforma HW/SW) -->
+        <div style="margin-bottom: 16px;">
             <label for="experiencia_en_la_maquina">Experiencia en la máquina (plataforma HW/SW):</label>
-            <select name="experiencia_en_la_maquina" id="experiencia_en_la_maquina">
+            <select name="experiencia_en_la_maquina" id="experiencia_en_la_maquina" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
@@ -165,11 +147,9 @@
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-
-        <div>
-            <!-- Experiencia en el lenguaje de programación -->
+        <div style="margin-bottom: 16px;">
             <label for="experiencia_en_el_lenguaje_de_programacion">Experiencia en el lenguaje de programación:</label>
-            <select name="experiencia_en_el_lenguaje_de_programacion" id="experiencia_en_el_lenguaje_de_programacion">
+            <select name="experiencia_en_el_lenguaje_de_programacion" id="experiencia_en_el_lenguaje_de_programacion" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
@@ -178,11 +158,10 @@
             </select>
         </div>
 
-        <h3>ATRIBUTOS DEL PROYECTO</h3>
-        <div>
-            <!-- Uso de prácticas modernas (herramientas CASE, metodologías) -->
+        <h3 style="font-weight: bold; margin-top: 24px;">ATRIBUTOS DEL PROYECTO</h3>
+        <div style="margin-bottom: 16px;">
             <label for="uso_de_practicas_modernas">Uso de prácticas modernas (herramientas CASE, metodologías):</label>
-            <select name="uso_de_practicas_modernas" id="uso_de_practicas_modernas">
+            <select name="uso_de_practicas_modernas" id="uso_de_practicas_modernas" style="border: 1px solid #000;">
                 <option value="Muy Bajo">Muy Bajo</option>
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
@@ -190,20 +169,18 @@
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-        <div>
-            <!-- Uso de software reutilizable -->
+        <div style="margin-bottom: 16px;">
             <label for="uso_de_software_reutilizable">Uso de software reutilizable:</label>
-            <select name="uso_de_software_reutilizable" id="uso_de_software_reutilizable">
+            <select name="uso_de_software_reutilizable" id="uso_de_software_reutilizable" style="border: 1px solid #000;">
                 <option value="Bajo">Bajo</option>
                 <option value="Nominal">Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
             </select>
         </div>
-        <div>
-            <!-- Restricciones de cronograma (presión de tiempo) -->
+        <div style="margin-bottom: 16px;">
             <label for="restricciones_de_cronograma">Restricciones de cronograma (presión de tiempo):</label>
-            <select name="restricciones_de_cronograma" id="restricciones_de_cronograma">
+            <select name="restricciones_de_cronograma" id="restricciones_de_cronograma" style="border: 1px solid #000;">
                 <option value="Nominal">Nominal</option>
                 <option value="Alto">Alto</option>
                 <option value="Muy Alto">Muy Alto</option>
@@ -212,7 +189,7 @@
         </div>
     </div>
 
-    <button type="submit">ENVIAR</button>
+    <button type="submit" style="margin-top: 24px; border: 1px solid #000; padding: 8px 16px;">ENVIAR</button>
 </form>
 
 {{-- Mostramos el error de laravel --}}
