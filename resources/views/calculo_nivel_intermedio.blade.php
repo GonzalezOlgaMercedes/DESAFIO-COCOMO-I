@@ -1,76 +1,91 @@
 @extends('layouts.base')
 
 @section('content')
-<div class="container mt-4">
-<!-- return view('calculo_nivel_intermedio', [
-            'modo_de_desarrollo' => $modoDesarrollo,
-            'KLOC' => $lineasDeCodigo,
-            'sueldo_por_persona' => $sueldoPorPersona,
-            'nivel_de_desarrollo' => $nivelDeDesarrollo,
-            'esfuerzo_nominal' => $esfuerzoNominal,
-            'esfuerzo_ajustado' => $esfuerzoAjustado,
-            'cronograma' => $cronograma,
-            'numero_de_personas' => $numeroDePersonas,
-            'tiempo_real' => $tiempo_real,
-            'costo_total' => $costoTotal,
-            'factores' => $factores,
-            'EAF' => $EAF,
-        ]); -->
-    <h2 class="mb-4">Resultados de la Estimación - Modo Intermedio</h2>
-    <table class="table table-bordered">
-        <tr>
-            <th>Modo de Desarrollo</th>
-            <td>{{ $modo_de_desarrollo }}</td>
-        </tr>
-        <tr>
-            <th>KLOC (Miles de Líneas de Código)</th>
-            <td>{{ $KLOC }}</td>
-        </tr>
-        <tr>
-            <th>Sueldo por Persona (mensual)</th>
-            <td>${{ number_format($sueldo_por_persona, 2) }}</td>
-        </tr>
-        <tr>
-            <th>Nivel de Desarrollo</th>
-            <td>{{ $nivel_de_desarrollo }}</td>
-        </tr>
-        <tr>
-            <th>Esfuerzo Nominal (Persona-Meses)</th>
-            <td>{{ $esfuerzo_nominal }} (&asymp;{{ number_format($esfuerzo_nominal, 2) }})</td>
-        </tr>
-        <tr>
-            <th>Esfuerzo Ajustado (Persona-Meses)</th>
-            <td>{{ $esfuerzo_ajustado }} (&asymp;{{ number_format($esfuerzo_ajustado, 2) }})</td>
-        </tr>
-        <tr>
-            <th>Cronograma (Meses)</th>
-            <td>{{ $cronograma }} (&asymp;{{ number_format($cronograma, 2) }})</td>
-        </tr>
-        <tr>
-            <th>Número de Personas</th>
-            <td>{{ $numero_de_personas }} (&asymp; {{ ceil($numero_de_personas) }})</td>
-        </tr>
-        <tr>
-            <th>Tiempo Real de Desarrollo (Meses)</th>
-            <td>{{ $tiempo_real }} ({{ number_format($tiempo_real, 2) }})</td>
-        </tr>
-        <tr>
-            <th>Costo Total del Proyecto</th>
-            <td>${{ number_format($costo_total, 2) }}</td>
-        </tr>
-    </table>
+<div class="flex justify-center items-center altura-minima-toda-la-pantalla">
+    <div class="shadow-lg p-8 altura-minima-toda-la-pantalla">
+        <h1 class="text-2xl text-center mb-8 font-bold text-[#BF0034]" style="text-transform: uppercase;">Resultados de la Estimación - Modo Intermedio</h1>
+        
+        <div class="">
+            <h2 class="uppercase text-xl font-bold text-[#BF0034] text-center">Datos Iniciales</h2>
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Modo de Desarrollo</p>
+                <p>{{ $modo_de_desarrollo }}</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">KLOC (Miles de Líneas de Código)</p>
+                <p>{{ $KLOC }}</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Sueldo por Persona (mensual)</p>
+                <p>${{ number_format($sueldo_por_persona, 2) }}</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Nivel de Desarrollo</p>
+                <p>{{ $nivel_de_desarrollo }}</p>
+            </div>
+
+            <div class="mt-8 border-t border-gray-300 pt-4">
+                <h2 class="uppercase text-xl font-bold text-[#BF0034] text-center">Datos Calculados</h2>
+            </div>
+            <div class="flex justify-between pt-2">
+                <p class="font-semibold pr-4">Esfuerzo Nominal (Persona-Meses)</p>
+                <p>{{ $esfuerzo_nominal }} (&asymp;{{ number_format($esfuerzo_nominal, 2) }})</p>
+            </div>
+            <div class="flex justify-between pb-2 pl-2">
+                <p>{{ $formula_esfuerzo_nominal }}</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Esfuerzo Ajustado (Persona-Meses)</p>
+                <p>{{ $esfuerzo_ajustado }} (&asymp;{{ number_format($esfuerzo_ajustado, 2) }})</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Cronograma (Meses)</p>
+                <p>{{ $cronograma }} (&asymp;{{ number_format($cronograma, 2) }})</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Número de Personas</p>
+                <p>{{ $numero_de_personas }} (&asymp; {{ ceil($numero_de_personas) }})</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Tiempo Real de Desarrollo (Meses)</p>
+                <p>{{ $tiempo_real }} ({{ number_format($tiempo_real, 2) }})</p>
+            </div>
+
+            <div class="flex justify-between py-2">
+                <p class="font-semibold pr-4">Costo Total del Proyecto</p>
+                <p>${{ number_format($costo_total, 2) }}</p>
+            </div>
+        </div>
+
+        <div class="mt-8 border-t border-gray-300 pt-4">
+            <h2 class="uppercase text-xl font-bold text-[#BF0034] mb-2">Productoria de Factores de Ajuste</h2>
+            <p>EAF = {{ implode(' x ', array_map(function($factor) {
+                return $factor['valor'];
+            }, $factores)) }} = {{ number_format(array_product(array_column($factores, 'valor')), 2) }}</p>
+            <p><strong>EAF (Factor de Ajuste del Esfuerzo):</strong> {{ number_format($EAF, 2) }}</p>
+        </div>
+
+        <div class="mt-6">
+            <h2 class="uppercase text-xl font-bold text-[#BF0034] mb-2">Factores Aplicados</h2>
+            <ul class="list-disc pl-5">
+                @foreach ($factores as $factor)
+                    <li>{{ $factor['nombre'] }}: {{ $factor['valor'] }}</li>
+                @endforeach
+            </ul>
+        </div>
+
+        <div class="flex justify-end py-4">
+            <a href="{{ route('registros') }}" class="inline-block bg-[#BF0034] text-white py-2 px-4 rounded hover:bg-[#A0002D]">
+                Regresar
+            </a>
+        </div>
+    </div>
 </div>
-<!-- Mostrar la productoria de los Factores de ajuste aplicados escrito por extensión usando implode-->
-<h3>Productoria de Factores de Ajuste</h3>
-<p>EAF = {{ implode(' x ', array_map(function($factor) {
-    return $factor['valor'];
-}, $factores)) }} = {{ number_format(array_product(array_column($factores, 'valor')), 2) }}</p>
-<p><strong>EAF (Factor de Ajuste del Esfuerzo):</strong> {{ number_format($EAF, 2) }}</p>
-<!-- Mostrar lista de factores aplicados -->
-<h3>Factores Aplicados</h3>
-<ul>
-    @foreach ($factores as $factor)
-        <li>{{ $factor['nombre'] }}: {{ $factor['valor'] }}</li>
-    @endforeach
-</ul>
 @endsection
